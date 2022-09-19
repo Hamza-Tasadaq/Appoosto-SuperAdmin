@@ -6,7 +6,7 @@ const Sidebar = ({ setShowSideBar = () => {}, showSideBar = "" }) => {
     <div
       className={`${
         showSideBar ? "left-0" : "-left-[500px]"
-      } bg-[#FFFFFF] lg:rounded-lg p-4 lg:left-4 w-64 boxShadow duration-300 fixed top-0 lg:top-24 bottom-0 lg:bottom-2 z-50 border border-r-[#14365D] `}
+      } bg-[#FFFFFF] lg:rounded-lg p-4 lg:left-4 w-64 boxShadow duration-300 fixed top-0 lg:top-24 bottom-0 lg:border-none lg:bottom-2 z-50 border border-r-[#14365D] `}
     >
       <div
         onClick={() => {
