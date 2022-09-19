@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import SmallScreen from "./pages/SmallScreen";
 
 function App() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div>
+      <SmallScreen />
+      <div className="hidden md:block">Desktop Screen</div>
+    </div>
   );
 }
 
