@@ -6,3 +6,7 @@ body {
     background-color: black;
   }
 }
+
+.noScrollBar::-webkit-scrollbar {
+  display: none;
+}
