@@ -6,10 +6,10 @@ const Layout = ({ children }) => {
   const [showSideBar, setShowSideBar] = useState(false);
   return (
     <div className="bg-[#EEF5FC] min-h-screen">
-      <Header />
+      <Header setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
       <div className="flex px-4 pt-24 relative">
-        <Sidebar />
-        <div className="bg-[#ffffff] rounded-lg w-full  ml-72 p-5 boxShadow">
+        <Sidebar setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
+        <div className="bg-[#ffffff] rounded-lg w-full  lg:ml-72 p-5 boxShadow">
           {children}
         </div>
       </div>
