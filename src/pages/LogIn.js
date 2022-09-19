@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import { Container, Input } from "../components";
+import { Input } from "../components";
 
 const LogIn = () => {
   return (
-    <Container
-      classes={
+    <div
+      className={
         "flex flex-col-reverse md:flex-row  px-3 py-2 md:p-0 min-h-screen"
       }
     >
@@ -40,7 +40,7 @@ const LogIn = () => {
             </div>
 
             <Link
-              to="/home"
+              to="/dashboard"
               className="rounded-md block text-center text-[#ffffff] text-base font-semibold bg-[#D85C27] w-full py-2"
             >
               Log In
@@ -64,7 +64,7 @@ const LogIn = () => {
           />
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

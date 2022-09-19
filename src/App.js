@@ -5,8 +5,17 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
+
+import { Layout } from "./components";
+
 import SmallScreen from "./pages/SmallScreen";
 import LogIn from "./pages/LogIn";
+import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
+import Resturants from "./pages/Resturants";
+import Plans from "./pages/Plans";
+import Subscriptions from "./pages/Subscriptions";
+import Translations from "./pages/Translations";
 
 import "./App.css";
 
@@ -21,7 +30,12 @@ function App() {
             <Route path="/" element={<LogIn />} />
             {/* Private/Protected Routes */}
             <Route element={<PrivateRoutes />}>
-              {/* <Route path="/overview" element={<Overview />} exact /> */}
+              <Route path="/dashboard" element={<Dashboard />} exact />
+              <Route path="/admin" element={<Admin />} exact />
+              <Route path="/restaurants" element={<Resturants />} exact />
+              <Route path="/plans" element={<Plans />} exact />
+              <Route path="/subscriptions" element={<Subscriptions />} exact />
+              <Route path="/translations" element={<Translations />} exact />
             </Route>
           </Routes>
         </BrowserRouter>
@@ -33,6 +47,12 @@ function App() {
 export default App;
 
 const PrivateRoutes = () => {
-  let auth = false;
-  return !auth ? <Navigate to="/" /> : <Outlet />;
+  let auth = true;
+  return !auth ? (
+    <Navigate to="/" />
+  ) : (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
 };
