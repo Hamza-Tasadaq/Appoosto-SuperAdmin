@@ -1,7 +1,7 @@
-const Input = ({ ...rest }) => {
+const Input = ({ classes, ...rest }) => {
   return (
     <input
-      className="rounded-md w-full outline-none bg-[#F5F6FA] border border-[#E7E7E7] p-2"
+      className={`outline-none border border-[#D9D9D9] rounded-lg px-3 py-2 ${classes}`}
       {...rest}
     />
   );

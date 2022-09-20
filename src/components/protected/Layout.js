@@ -9,9 +9,7 @@ const Layout = ({ children }) => {
       <Header setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
       <div className="flex px-4 pt-24 relative">
         <Sidebar setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
-        <div className="bg-[#ffffff] rounded-lg w-full  lg:ml-72 p-5 boxShadow">
-          {children}
-        </div>
+        <div className=" w-full  lg:ml-72 p-5">{children}</div>
       </div>
     </div>
   );

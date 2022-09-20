@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Input } from "../components";
+import { LoginInput } from "../components";
 
 const LogIn = () => {
   return (
@@ -19,7 +19,7 @@ const LogIn = () => {
               <label className="text-[#0A111F] font-medium text-base">
                 Email address
               </label>
-              <Input
+              <LoginInput
                 placeholder="example@gmail.com"
                 name="email"
                 type="email"
@@ -29,11 +29,11 @@ const LogIn = () => {
               <label className="text-[#0A111F] font-medium text-base">
                 Password
               </label>
-              <Input placeholder="........." name="email" type="password" />
+              <LoginInput placeholder="........." name="email" type="password" />
             </div>
             <div className="flex items-center justify-between font-normal text-xs text-[#0A111F]">
               <div className="flex items-center space-x-2">
-                <input type={"checkbox"} />
+                <LoginInput type={"checkbox"} />
                 <label>Remember me?</label>
               </div>
               <h5 className="underline">forgot password</h5>

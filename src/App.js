@@ -21,7 +21,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div>
+    <div className="font-Poppins">
       <SmallScreen />
       <div className="hidden md:block">
         <BrowserRouter>
