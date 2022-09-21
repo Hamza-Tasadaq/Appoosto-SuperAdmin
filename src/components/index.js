@@ -6,6 +6,8 @@ export { default as Header } from "./protected/Header";
 export { default as Input } from "./commons/Input";
 export { default as Button } from "./commons/Button";
 export { default as ErrorText } from "./commons/ErrorText";
+export { default as Switch } from "./commons/Switch";
+export { default as Dropdown } from "./commons/Dropdown";
 
 // Admin
 export { default as Users } from "./protected/Admin/Users";

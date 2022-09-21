@@ -32,8 +32,8 @@ const LogIn = () => {
               <LoginInput placeholder="........." name="email" type="password" />
             </div>
             <div className="flex items-center justify-between font-normal text-xs text-[#0A111F]">
-              <div className="flex items-center space-x-2">
-                <LoginInput type={"checkbox"} />
+              <div className="flex items-center space-x-1">
+                <input type={"checkbox"} />
                 <label>Remember me?</label>
               </div>
               <h5 className="underline">forgot password</h5>
@@ -46,13 +46,6 @@ const LogIn = () => {
               Log In
             </Link>
           </form>
-
-          <div className="mt-4 font-medium">
-            <h4 className="text-[#627193] text-sm">Don't have an account?</h4>
-            <h6 className="underline text-xs text-[#D85C27]">
-              Create new account
-            </h6>
-          </div>
         </div>
       </div>
       <div className="bg-[#0C234C] rounded-t-md md:rounded-none p-10 md:h-screen flex items-center justify-center flex-1">
