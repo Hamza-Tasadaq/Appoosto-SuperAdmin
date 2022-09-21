@@ -5,7 +5,7 @@ import { Button, Input, Switch, Dropdown } from "../../index";
 const UserItem = () => {
   const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="rounded-lg  bg-[#ffffff] py-4 px-6 space-y-4">
+    <div className="rounded-lg  bg-[#ffffff] py-4 px-6 space-y-6">
       <div
         onClick={() => {
           setIsClicked(true);

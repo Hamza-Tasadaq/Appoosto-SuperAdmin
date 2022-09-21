@@ -15,7 +15,7 @@ const Dropdown = ({ classes, value, dropdownValues = [], ...rest }) => {
         <AiFillCaretDown />
       </div>
       {isClicked && (
-        <div className="bg-[#ffffff] border border-[#d9d9d9] absolute w-full">
+        <div className="bg-[#ffffff] border border-[#d9d9d9] z-50 drop-shadow-xl absolute w-full">
           <ul>
             {dropdownValues?.map((text) => (
               <li
