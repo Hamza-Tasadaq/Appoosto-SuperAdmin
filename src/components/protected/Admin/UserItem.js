@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { TrashIcon } from "../../../icons";
-import { Button, Input, Switch, Dropdown } from "../../index";
+import { Button, Input, Switch, Dropdown, Trash } from "../../index";
 
 const UserItem = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -48,9 +47,7 @@ const UserItem = () => {
         <div className="flex-1 flex justify-end">
           {isClicked && (
             <div className="flex items-center">
-              <div className="bg-[#F0E3E7] rounded-lg p-1.5 cursor-pointer">
-                <TrashIcon />
-              </div>
+              <Trash />
               <Switch />
             </div>
           )}

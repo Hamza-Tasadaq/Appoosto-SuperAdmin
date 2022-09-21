@@ -1,4 +1,5 @@
 import Dropdown from "../../commons/Dropdown";
+import Pagination from "../../commons/Pagination";
 import UserItem from "./UserItem";
 
 const UsersList = () => {
@@ -21,6 +22,10 @@ const UsersList = () => {
         <UserItem />
         <UserItem />
         <UserItem />
+
+        <div>
+          <Pagination />
+        </div>
       </div>
     </div>
   );
