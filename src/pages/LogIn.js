@@ -5,7 +5,7 @@ import { useState } from "react";
 import { LOGIN_USER } from "../graphQl/Mutation";
 
 const LogIn = () => {
-  const [login, { loading, data, error }] = useMutation(LOGIN_USER);
+  const [login, { error} ] = useMutation(LOGIN_USER);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -15,14 +15,21 @@ const LogIn = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    const res = await login({
-      variables: {
-        email: "mahmudakash177@gmail.com",
-        password: "123456",
-      },
-    });
+try {
+const resposnce = await login({
+    variables: {
+      email: "mahmudakash177@gmail.com",
+      password: "123456",
+    },
+  });
+    console.log(error);
+    console.log(resposnce);
+} catch (error) {
+  console.log(error.message)
+}
 
-    console.log(res);
+
+  
   };
 
   return (
