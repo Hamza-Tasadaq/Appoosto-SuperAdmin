@@ -4,37 +4,11 @@ import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQl/Mutation";
 import { LoginInput } from "../components";
-
-function setIem(key, value) {
-  // `item` is an object which contains the original value
-  // as well as the time when it's supposed to expire
-  const item = {
-    value: value,
-  };
-  localStorage.setItem(key, JSON.stringify(item));
-}
-
-function getItem(key) {
-  const itemStr = localStorage.getItem(key);
-  // if the item doesn't exist, return null
-  if (!itemStr) {
-    return null;
-  }
-  const item = JSON.parse(itemStr);
-  const now = new Date();
-  // compare the expiry time of the item with the current time
-  if (now.getTime() > item.expiry) {
-    // If the item is expired, delete the item from storage
-    // and return null
-    localStorage.removeItem(key);
-    return null;
-  }
-  return item.value;
-}
+import { setIem, getItem } from "../services/LocalStorage";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   // const [checked, setChecked] = useState < boolean > true;
 
