@@ -21,3 +21,7 @@ export { default as Logs } from "./protected/Dashboard/Logs";
 // Admin
 export { default as Users } from "./protected/Admin/Users";
 export { default as Permissions } from "./protected/Admin/Permissions";
+
+// Charts
+export { default as PieChart } from "./protected/Charts/PieChart";
+export { default as BarChart } from "./protected/Charts/BarChart";

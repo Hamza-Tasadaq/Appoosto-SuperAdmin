@@ -2,6 +2,8 @@ import React from "react";
 import Dropdown from "../../commons/Dropdown";
 import DatePicker from "../../commons/Datepicker";
 import { CalendarIcon } from "../../../icons";
+import BarChart from "../Charts/BarChart";
+import LineChart from "../Charts/LineChart";
 
 const Logs = () => {
   return (
@@ -53,6 +55,9 @@ const Logs = () => {
           </div>
         </div>
       </div>
+
+      <LineChart />
+      <BarChart />
     </div>
   );
 };
