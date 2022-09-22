@@ -26,7 +26,6 @@ function App() {
               {/* Public Routes */}
               <Route path="/" element={<LogIn />} />
               {/* Private/Protected Routes */}
-
               <Route element={<PrivateRoutes />}>
                 <Route path="/dashboard" element={<Dashboard />} exact />
                 <Route path="/admin" element={<Admin />} exact />
