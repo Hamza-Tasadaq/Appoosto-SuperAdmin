@@ -12,6 +12,10 @@ export { default as Trash } from "./commons/Trash";
 
 export { default as Pagination } from "./commons/Pagination";
 
+// Dashboard
+export { default as Home } from "./protected/Dashboard/Home";
+export { default as Logs } from "./protected/Dashboard/Logs";
+
 // Admin
 export { default as Users } from "./protected/Admin/Users";
 export { default as Permissions } from "./protected/Admin/Permissions";

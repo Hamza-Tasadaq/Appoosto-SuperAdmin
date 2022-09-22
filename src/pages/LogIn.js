@@ -1,7 +1,30 @@
 import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 import { LoginInput } from "../components";
+import { useState } from "react";
+import { LOGIN_USER } from "../graphQl/Mutation";
 
 const LogIn = () => {
+  const [login, { loading, data, error }] = useMutation(LOGIN_USER);
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+
+    const res = await login({
+      variables: {
+        email: "mahmudakash177@gmail.com",
+        password: "123456",
+      },
+    });
+
+    console.log(res);
+  };
+
   return (
     <div
       className={
@@ -29,7 +52,11 @@ const LogIn = () => {
               <label className="text-[#0A111F] font-medium text-base">
                 Password
               </label>
-              <LoginInput placeholder="........." name="email" type="password" />
+              <LoginInput
+                placeholder="........."
+                name="email"
+                type="password"
+              />
             </div>
             <div className="flex items-center justify-between font-normal text-xs text-[#0A111F]">
               <div className="flex items-center space-x-1">
@@ -39,12 +66,12 @@ const LogIn = () => {
               <h5 className="underline">forgot password</h5>
             </div>
 
-            <Link
-              to="/dashboard"
+            <button
+              onClick={submitHandler}
               className="rounded-md block text-center text-[#ffffff] text-base font-semibold bg-[#D85C27] w-full py-2"
             >
               Log In
-            </Link>
+            </button>
           </form>
         </div>
       </div>
