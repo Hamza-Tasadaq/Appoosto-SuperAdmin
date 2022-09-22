@@ -28,7 +28,7 @@ export const options = {
       display: true,
       text: "Chart.js Bar Chart",
     },
-  }
+  },
 };
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -39,15 +39,16 @@ export const data = {
     {
       label: "Dataset 1",
       data: labels.map(() => Math.random() * (100 - -80) + -80),
-      backgroundColor: "rgb(255, 99, 132)",
-      barThickness: 40,             
-
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
+      borderColor: "rgba(255, 99, 132, 1)",
+      barThickness: 40,
     },
     {
       label: "Dataset 2",
       data: labels.map(() => Math.random() * (100 - -80) + -80),
-      backgroundColor: "rgb(75, 192, 192)",
-      barThickness: 40,  
+      backgroundColor: "rgba(53, 162, 235, 0.5)",
+      borderColor: "rgba(53, 162, 235, 1)",
+      barThickness: 40,
     },
   ],
 };

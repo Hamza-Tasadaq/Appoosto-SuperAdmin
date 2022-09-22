@@ -25,3 +25,4 @@ export { default as Permissions } from "./protected/Admin/Permissions";
 // Charts
 export { default as PieChart } from "./protected/Charts/PieChart";
 export { default as BarChart } from "./protected/Charts/BarChart";
+export { default as LineChart } from "./protected/Charts/LineChart";

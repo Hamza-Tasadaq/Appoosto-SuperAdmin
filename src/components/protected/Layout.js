@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
     <div className="bg-[#EEF5FC] min-h-screen">
       <Header setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
       <Container>
-        <div className="flex px-4 pt-24 relative">
+        <div className="flex px-4 pt-24 relative overflow-x-hidden">
           <Sidebar setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
           <div className=" w-full  lg:ml-72 p-5">{children}</div>
         </div>

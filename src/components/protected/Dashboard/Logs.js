@@ -1,9 +1,9 @@
 import React from "react";
+import { CalendarIcon } from "../../../icons";
 import Dropdown from "../../commons/Dropdown";
 import DatePicker from "../../commons/Datepicker";
-import { CalendarIcon } from "../../../icons";
-
-import { BarChart } from "../../index";
+import Heading from "./Heading";
+import { BarChart, PieChart } from "../../index";
 
 const Logs = () => {
   return (
@@ -57,9 +57,7 @@ const Logs = () => {
       </div>
 
       <div className="bg-[#EFF3F7] p-4 rounded-lg">
-        <h1 className="text-[#14355E] font-semibold border-b border-[#14365D80] py-1 pb-2">
-          Top referrers
-        </h1>
+        <Heading text="Top referrers" />
         <div className="flex space-x-5 lg:space-x-8">
           <div className="mt-6 lg:mt-10 space-y-2">
             <div className="flex items-center">
@@ -106,9 +104,7 @@ const Logs = () => {
       </div>
 
       <div className="bg-[#EFF3F7] p-4 rounded-lg">
-        <h1 className="text-[#14355E] font-semibold border-b border-[#14365D80] py-1 pb-2">
-          Top referrers
-        </h1>
+        <Heading text="Top locations" />
         <div className="flex space-x-5 lg:space-x-8">
           <div className="mt-6 lg:mt-10 space-y-2">
             <div className="flex items-center">
@@ -151,6 +147,65 @@ const Logs = () => {
           <div className="flex-1">
             <BarChart />
           </div>
+        </div>
+      </div>
+
+      <div className="flex space-x-4">
+        <div className="bg-[#EFF3F7] space-y-4 flex-1 p-4 rounded-lg">
+          <Heading text="Top Platforms" />
+
+          <div className=" space-y-3">
+            <div className="flex justify-between items-center">
+              <h3 className=" text-sm lg:text-base text-[#000000]">Chrome</h3>
+              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                {" "}
+                125
+              </h1>
+            </div>
+            <div className="flex justify-between items-center">
+              <h3 className=" text-sm lg:text-base text-[#000000]">Edge</h3>
+              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                {" "}
+                125
+              </h1>
+            </div>
+            <div className="flex justify-between items-center">
+              <h3 className=" text-sm lg:text-base text-[#000000]">Safari</h3>
+              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                {" "}
+                125
+              </h1>
+            </div>
+          </div>
+          <PieChart />
+        </div>
+        <div className="bg-[#EFF3F7] space-y-4 flex-1 p-4 rounded-lg">
+          <Heading text=" Top Browswers" />
+
+          <div className=" space-y-3">
+            <div className="flex justify-between items-center">
+              <h3 className=" text-sm lg:text-base text-[#000000]">Windows</h3>
+              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                {" "}
+                125
+              </h1>
+            </div>
+            <div className="flex justify-between items-center">
+              <h3 className=" text-sm lg:text-base text-[#000000]">Ios</h3>
+              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                {" "}
+                125
+              </h1>
+            </div>
+            <div className="flex justify-between items-center">
+              <h3 className=" text-sm lg:text-base text-[#000000]">Android</h3>
+              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                {" "}
+                125
+              </h1>
+            </div>
+          </div>
+          <PieChart />
         </div>
       </div>
     </div>
