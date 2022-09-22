@@ -8,9 +8,9 @@ import { setItem, getItem } from "../services/LocalStorage";
 
 const LogIn = () => {
   const navigate = useNavigate();
-  const [login] = useMutation(LOGIN_USER);
+  const [login, { loading }] = useMutation(LOGIN_USER);
 
-  // const [checked, setChecked] = useState < boolean > true;
+  console.log(loading);
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -54,7 +54,6 @@ const LogIn = () => {
             password,
           },
         });
-        console.log(data);
         // Login SuccessFull
         if (data.login) {
           // If remeber me is clicked then store the credentials
@@ -148,9 +147,12 @@ const LogIn = () => {
             </div>
 
             <button
+              disabled={loading}
               onClick={submitHandler}
               type="submit"
-              className="rounded-md block text-center text-[#ffffff] text-base font-semibold bg-[#D85C27] w-full py-2"
+              className={`rounded-md  block text-center text-[#ffffff] text-base font-semibold bg-[#D85C27] w-full py-2 ${
+                loading && "opacity-50"
+              } `}
             >
               Log In
             </button>

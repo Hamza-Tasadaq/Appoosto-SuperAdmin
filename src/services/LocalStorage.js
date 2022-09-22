@@ -13,7 +13,6 @@ function getItem(key) {
   }
   const item = JSON.parse(itemStr);
 
-  console.log("item", item);
   return item;
 }
 
