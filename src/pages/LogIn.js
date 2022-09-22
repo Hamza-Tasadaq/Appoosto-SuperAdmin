@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQl/Mutation";
 import { LoginInput } from "../components";
-import { setIem, getItem } from "../services/LocalStorage";
+import { setItem, getItem } from "../services/LocalStorage";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -59,13 +59,13 @@ const LogIn = () => {
         if (data.login) {
           // If remeber me is clicked then store the credentials
           if (rememberMe) {
-            setIem("credentials", {
+            setItem("credentials", {
               email,
               password,
             });
           }
-          setIem("token", data.login);
-          setIem("isAuthenticated", true);
+          setItem("token", data.login);
+          setItem("isAuthenticated", true);
 
           navigate("/dashboard");
         } else {

@@ -16,6 +16,7 @@ import Resturants from "./pages/Resturants";
 import Plans from "./pages/Plans";
 import Subscriptions from "./pages/Subscriptions";
 import Translations from "./pages/Translations";
+import { getItem } from "./services";
 
 import "./App.css";
 
@@ -48,7 +49,7 @@ function App() {
 export default App;
 
 const PrivateRoutes = () => {
-  let auth = localStorage.getItem("isAuthenticated");
+  let auth = getItem("isAuthenticated");
   return !auth ? (
     <Navigate to="/" />
   ) : (

@@ -1,4 +1,4 @@
-function setIem(key, value) {
+function setItem(key, value) {
   // `item` is an object which contains the original value
   // as well as the time when it's supposed to expire
   const item = value;
@@ -13,8 +13,8 @@ function getItem(key) {
   }
   const item = JSON.parse(itemStr);
 
-  console.log("item",item);
+  console.log("item", item);
   return item;
 }
 
-export { setIem, getItem };
+export { setItem, getItem };
