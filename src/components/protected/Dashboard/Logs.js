@@ -1,5 +1,9 @@
 import React from "react";
+import { BsCalendar3 } from "react-icons/bs";
 import Dropdown from "../../commons/Dropdown";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const Logs = () => {
   return (
@@ -11,16 +15,21 @@ const Logs = () => {
         <div className="flex-1 space-y-2">
           <div className="flex items-center space-x-2">
             <div className="flex-1">
-              <Dropdown
-                value={"From Date"}
-                dropdownValues={["value 1", "value 2"]}
-              />
+              <div className="border border-[#D9D9D9] rounded-lg px-3 py-2 cursor-pointer flex items-center justify-between ">
+                <DatePicker
+                  placeholderText="From Date"
+                  className="outline-none"
+                />
+              </div>
             </div>
             <div className="flex-1">
-              <Dropdown
-                value={"To Date"}
-                dropdownValues={["value 1", "value 2"]}
-              />
+              <div className="border border-[#D9D9D9] rounded-lg px-3 py-2 cursor-pointer flex items-center justify-between ">
+                <DatePicker
+                  placeholderText="To Date"
+                  className="outline-none"
+                />
+                <BsCalendar3 />
+              </div>
             </div>
             <div className="flex-1">
               <Dropdown
