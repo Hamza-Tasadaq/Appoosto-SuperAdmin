@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQl/Mutation";
@@ -32,6 +33,7 @@ function getItem(key) {
 }
 
 const LogIn = () => {
+  const navigate = useNavigate();
   const [login, { error }] = useMutation(LOGIN_USER);
 
   // const [checked, setChecked] = useState < boolean > true;
@@ -78,9 +80,9 @@ const LogIn = () => {
             password,
           },
         });
+        console.log(data);
         // Login SuccessFull
         if (data.login) {
-          console.log("login successfull");
           // If remeber me is clicked then store the credentials
           if (rememberMe) {
             setIem("credentials", {
@@ -88,6 +90,10 @@ const LogIn = () => {
               password,
             });
           }
+          setIem("token", data.login);
+          setIem("isAuthenticated", true);
+
+          navigate("/dashboard");
         } else {
           // Login Failure
           toast.error("Wrong Credentials", {

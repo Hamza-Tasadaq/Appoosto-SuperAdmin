@@ -48,7 +48,7 @@ function App() {
 export default App;
 
 const PrivateRoutes = () => {
-  let auth = true;
+  let auth = localStorage.getItem("isAuthenticated");
   return !auth ? (
     <Navigate to="/" />
   ) : (
