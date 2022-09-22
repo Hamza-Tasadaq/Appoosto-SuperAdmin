@@ -19,25 +19,16 @@ ChartJS.register(
 );
 
 export const options = {
+  responsive: true,
   plugins: {
+    legend: {
+      position: "top",
+    },
     title: {
       display: true,
-      text: "Chart.js Bar Chart - Stacked",
+      text: "Chart.js Bar Chart",
     },
-  },
-  responsive: true,
-  interaction: {
-    mode: "index",
-    intersect: false,
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
+  }
 };
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
@@ -47,21 +38,16 @@ export const data = {
   datasets: [
     {
       label: "Dataset 1",
-      data: labels.map(() => Math.random() * (500 - -500) + -500),
+      data: labels.map(() => Math.random() * (100 - -80) + -80),
       backgroundColor: "rgb(255, 99, 132)",
-      stack: "Stack 0",
+      barThickness: 40,             
+
     },
     {
       label: "Dataset 2",
-      data: labels.map(() => Math.random() * (500 - -500) + -500),
+      data: labels.map(() => Math.random() * (100 - -80) + -80),
       backgroundColor: "rgb(75, 192, 192)",
-      stack: "Stack 0",
-    },
-    {
-      label: "Dataset 3",
-      data: labels.map(() => Math.random() * (500 - -500) + -500),
-      backgroundColor: "rgb(53, 162, 235)",
-      stack: "Stack 1",
+      barThickness: 40,  
     },
   ],
 };
