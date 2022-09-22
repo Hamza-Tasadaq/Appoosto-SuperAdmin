@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQl/Mutation";
 import { LoginInput } from "../components";
@@ -57,7 +58,6 @@ const LogIn = () => {
     }
   }, []);
 
-
   const changeHandler = async (e) => {
     setFormData({
       ...formData,
@@ -90,7 +90,15 @@ const LogIn = () => {
           }
         } else {
           // Login Failure
-          console.log("login fail");
+          toast.error("Wrong Credentials", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
         }
       } catch (error) {
         console.log(error.message);

@@ -6,7 +6,7 @@ import {
   Outlet,
 } from "react-router-dom";
 
-import { Layout } from "./components";
+import { Layout, ToastWrapper } from "./components";
 
 import SmallScreen from "./pages/SmallScreen";
 import LogIn from "./pages/LogIn";
@@ -24,6 +24,7 @@ function App() {
     <div className="font-Poppins">
       <SmallScreen />
       <div className="hidden md:block">
+        <ToastWrapper />
         <BrowserRouter>
           <Routes>
             {/* Public Routes */}
