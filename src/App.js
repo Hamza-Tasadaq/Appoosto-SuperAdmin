@@ -12,7 +12,7 @@ import Subscriptions from "./pages/Subscriptions";
 import Translations from "./pages/Translations";
 
 import "./App.css";
-import { ProvideAuth } from "./hooks/auth";
+import { ProvideAuth } from "./hooks/useAuth";
 
 function App() {
   return (
