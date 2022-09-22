@@ -10,6 +10,7 @@ export { default as Switch } from "./commons/Switch";
 export { default as Dropdown } from "./commons/Dropdown";
 export { default as Trash } from "./commons/Trash";
 export { default as ToastWrapper } from "./commons/ToastWrapper";
+export { default as Datepicker } from "./commons/Datepicker";
 
 export { default as Pagination } from "./commons/Pagination";
 
