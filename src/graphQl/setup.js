@@ -2,8 +2,8 @@ import { WebSocketLink } from "apollo-link-ws";
 import { HttpLink } from "apollo-link-http";
 import { split } from "apollo-link";
 import { getMainDefinition } from "apollo-utilities";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import ApolloClient from "apollo-client";
+
+import {ApolloClient , InMemoryCache} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { getItem } from "../services";
 

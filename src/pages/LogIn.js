@@ -10,7 +10,7 @@ const LogIn = () => {
   const navigate = useNavigate();
   const [login, { loading }] = useMutation(LOGIN_USER);
 
-  console.log(loading);
+
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -30,7 +30,7 @@ const LogIn = () => {
         rememberMe: true,
       });
     } else {
-      console.log(response);
+      // console.log(response);
     }
   }, []);
 
