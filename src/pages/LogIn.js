@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQl/Mutation";
 import { LoginInput } from "../components";
 import { setItem, getItem } from "../services/LocalStorage";
+import { useAuth } from "../hooks/useAuth";
 
 const LogIn = () => {
+  const auth = useAuth();
   const navigate = useNavigate();
   const [login, { loading }] = useMutation(LOGIN_USER);
-
-
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -20,7 +20,12 @@ const LogIn = () => {
     rememberMe: false,
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // If user is already logged in then navigate to the dashboard
+    if (auth?.user) {
+      navigate("/dashboard");
+      return;
+    }
     const response = getItem("credentials");
     if (response) {
       const { email, password } = response;
@@ -32,7 +37,7 @@ const LogIn = () => {
     } else {
       // console.log(response);
     }
-  }, []);
+  }, [auth, navigate]);
 
   const changeHandler = async (e) => {
     setFormData({

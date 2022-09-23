@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Home, Logs } from "../components";
+
+import { useMutation } from "@apollo/client";
+import { CREATE_PERMISSION } from "../graphQl/Mutation";
 
 const tabs = {
   1: Logs,
@@ -9,6 +12,23 @@ const tabs = {
 const Dashboard = () => {
   const [tab, setTab] = useState(1);
   const Tab = tabs[tab];
+
+  const [createPermission, { data, loading, error }] =
+    useMutation(CREATE_PERMISSION);
+
+  useEffect(() => {
+    const r = async () => {
+      const res = await createPermission({
+        variables: {
+          name: "Permission 1",
+        },
+      });
+
+    };
+    r();
+  }, [createPermission]);
+  console.log(error, loading,data);
+
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between pr-4">
