@@ -8,7 +8,7 @@ import { setContext } from "@apollo/client/link/context";
 import { getItem } from "../services";
 
 const httpLink = new HttpLink({
-  uri: "http://3.224.127.224/api/graphql", // use https for secure endpoint
+  uri: "https://www.appoosto.com/api/graphql", // use https for secure endpoint
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -24,7 +24,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const wsLink = new WebSocketLink({
-  uri: "ws://3.224.127.224/api/graphql/websocket", // use wss for a secure endpoint
+  uri: "wss://www.appoosto.com/api/graphql/websocket", // use wss for a secure endpoint
   options: {
     reconnect: true,
   },
