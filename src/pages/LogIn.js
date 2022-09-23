@@ -64,8 +64,6 @@ const LogIn = () => {
             });
           }
           setItem("token", data.login);
-          setItem("isAuthenticated", true);
-
           navigate("/dashboard");
         } else {
           // Login Failure
