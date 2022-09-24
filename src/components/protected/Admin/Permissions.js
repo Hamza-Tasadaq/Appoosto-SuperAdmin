@@ -18,7 +18,7 @@ const Permissions = () => {
   } = useQuery(GET_PERMISSIONS, {
     variables: {
       page: 1,
-      size: 10,
+      size: 2,
     },
   });
 
@@ -63,6 +63,7 @@ const Permissions = () => {
       setShowErrors(true);
     }
   };
+
 
   return (
     <div className="space-y-4">

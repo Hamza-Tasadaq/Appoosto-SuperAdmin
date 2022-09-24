@@ -3,18 +3,16 @@ import Button from "../../commons/Button";
 import Dropdown from "../../commons/Dropdown";
 import Trash from "../../commons/Trash";
 
-const PermissionItem = ({ username = "", permission = {} }) => {
+const PermissionItem = ({ permissionData }) => {
   const [isClicked, setIsClicked] = useState(false);
-
-  const [permissions, setPermissions] = useState(permission);
-
-  console.log({ permissions });
+  // console.log("PermisItem");
+  const [permissions, setPermissions] = useState(permissionData);
   return (
     <div className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-semibold text-base">{username}</h1>
-          <p className="text-xs">3 Members</p>
+          <h1 className="font-semibold text-base">{permissions.name}</h1>
+          <p className="text-xs">{permissions.usersCount} Members</p>
         </div>
         <div>
           {isClicked ? (
