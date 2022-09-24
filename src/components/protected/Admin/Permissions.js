@@ -25,7 +25,8 @@ const Permissions = () => {
           name: formData.name,
         },
       });
-      if (mutationData.createPermission === "Success") {
+      if (mutationData?.createPermission === "Success") {
+        console.log("permission Added");
         // Permission Added Success
         toast.success("Permission Added", {
           position: "top-right",
