@@ -1,26 +1,15 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Input, Button } from "../../index";
 import PermissionsList from "./PermissionsList";
-import { CREATE_PERMISSION, GET_PERMISSIONS } from "../../../graphQl";
+import { CREATE_PERMISSION } from "../../../graphQl";
 
 const Permissions = () => {
   const [
     createPermission,
     { loading: mutationLoading, error: mutationError, data: mutationData },
   ] = useMutation(CREATE_PERMISSION);
-
-  const {
-    loading: permissionsLoading,
-    error: paginationError,
-    data: permissionsData,
-  } = useQuery(GET_PERMISSIONS, {
-    variables: {
-      page: 1,
-      size: 2,
-    },
-  });
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -64,7 +53,6 @@ const Permissions = () => {
     }
   };
 
-
   return (
     <div className="space-y-4">
       <form
@@ -99,11 +87,8 @@ const Permissions = () => {
           />
         </div>
       </form>
-      {permissionsLoading ? (
-        <>Loading</>
-      ) : (
-        <PermissionsList queryData={permissionsData} />
-      )}
+
+      <PermissionsList />
     </div>
   );
 };
