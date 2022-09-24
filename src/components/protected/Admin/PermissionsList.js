@@ -18,7 +18,7 @@ const PermissionsList = () => {
   } = useQuery(GET_PERMISSIONS, {
     variables: {
       page: page,
-      size: 10,
+      size: 100,
     },
   });
 
@@ -33,6 +33,7 @@ const PermissionsList = () => {
   if (permissionsLoading) {
     return <div>loading...</div>;
   }
+
   return (
     <>
       {permissionsError && (

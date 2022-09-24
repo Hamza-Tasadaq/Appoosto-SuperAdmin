@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { Input, Button } from "../../index";
@@ -6,10 +6,8 @@ import PermissionsList from "./PermissionsList";
 import { CREATE_PERMISSION } from "../../../graphQl";
 
 const Permissions = () => {
-  const [
-    createPermission,
-    { loading: mutationLoading, error: mutationError, data: mutationData },
-  ] = useMutation(CREATE_PERMISSION);
+  const [createPermission, { loading: mutationLoading, error: mutationError }] =
+    useMutation(CREATE_PERMISSION);
 
   const [showErrors, setShowErrors] = useState(false);
 
@@ -19,38 +17,41 @@ const Permissions = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    if (formData.permissionName) {
-      await createPermission({
-        variables: {
-          name: formData.name,
-        },
-      });
-      if (mutationData?.createPermission === "Success") {
-        console.log("permission Added");
-        // Permission Added Success
-        toast.success("Permission Added", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+    try {
+      if (formData.permissionName) {
+        const { data } = await createPermission({
+          variables: {
+            name: formData.name,
+          },
         });
-      } else if (mutationError) {
-        // Permission Added Failure
-        toast.error("Some Thing Wrong", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        if (data?.createPermission === "Success") {
+          // Permission Added Success
+          toast.success("Permission Added", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else if (mutationError) {
+          // Permission Added Failure
+          toast.error("Some Thing Wrong", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
+      } else {
+        setShowErrors(true);
       }
-    } else {
-      setShowErrors(true);
+    } catch (err) {
+      console.log(err);
     }
   };
 
