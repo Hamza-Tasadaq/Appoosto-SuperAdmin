@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { Input, Button } from "../../index";
