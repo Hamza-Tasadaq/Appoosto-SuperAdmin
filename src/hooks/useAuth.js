@@ -1,6 +1,6 @@
 import { useContext, createContext } from "react";
 import { useQuery } from "@apollo/client";
-import { LOGGEDINUSERAUTH } from "../graphQl/Query";
+import { LOGGED_IN_USER } from "../graphQl";
 
 const authContext = createContext();
 
@@ -16,7 +16,7 @@ export const useAuth = () => {
 
 function useProvideAuth() {
   //Handle the error message with react toastify
-  const { loading, data } = useQuery(LOGGEDINUSERAUTH);
+  const { loading, data } = useQuery(LOGGED_IN_USER);
 
   return {
     user: data,

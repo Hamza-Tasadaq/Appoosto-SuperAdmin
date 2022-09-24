@@ -1,12 +1,20 @@
 import PermissionItem from "./PermissionItem";
 
-const PermissionsList = () => {
+const PermissionsList = ({ queryData }) => {
+  console.log(queryData.getAdmin.responscedata.totalPages);
+  console.log(queryData.getAdmin.responscedata.totalItems);
+  
   return (
     <div className="space-y-2">
-      <PermissionItem />
-      <PermissionItem />
-      <PermissionItem />
-      
+      {queryData?.getAdmin?.responscedata?.admins.map(
+        ({ username, permission }, index) => (
+          <PermissionItem
+            key={index + 1}
+            username={username}
+            permission={permission}
+          />
+        )
+      )}
     </div>
   );
 };

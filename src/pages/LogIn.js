@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../graphQl/Mutation";
+import { LOGIN_USER } from "../graphQl";
 import { LoginInput } from "../components";
 import { setItem, getItem } from "../services/LocalStorage";
 import { useAuth } from "../hooks/useAuth";
