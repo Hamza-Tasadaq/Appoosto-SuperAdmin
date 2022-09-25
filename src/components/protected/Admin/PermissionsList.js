@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { useQuery } from "@apollo/client";
 import { useSelector, useDispatch } from "react-redux";
 import Pagination from "../../commons/Pagination";
@@ -21,7 +21,7 @@ const PermissionsList = () => {
   } = useQuery(GET_PERMISSIONS, {
     variables: {
       page: page,
-      size: 10,
+      size: 5,
     },
   });
 
@@ -67,4 +67,4 @@ const PermissionsList = () => {
   );
 };
 
-export default PermissionsList;
+export default memo(PermissionsList);

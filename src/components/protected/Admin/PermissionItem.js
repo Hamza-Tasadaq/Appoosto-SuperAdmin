@@ -20,6 +20,7 @@ const PermissionItem = ({ permissionData }) => {
   const [permissions, setPermissions] = useState(permissionData);
 
   const handleSave = async () => {
+    console.log(permissions);
     try {
       const { data } = await editPermission({
         variables: {
@@ -479,7 +480,13 @@ const PermissionItem = ({ permissionData }) => {
                 type="checkbox"
                 id="Impersonate users"
                 name="Impersonate users"
-                value={permissions.impersonate_user}
+                onChange={() => {
+                  setPermissions({
+                    ...permissions,
+                    impersonate_user: !permissions.impersonate_user,
+                  });
+                }}
+                checked={permissions.impersonate_user}
               />
               <label htmlFor="Impersonate users"> Impersonate users</label>
             </div>
@@ -489,7 +496,13 @@ const PermissionItem = ({ permissionData }) => {
                 type="checkbox"
                 id="edit website"
                 name="edit website"
-                value="edit website"
+                onChange={() => {
+                  setPermissions({
+                    ...permissions,
+                    edit_website: !permissions.edit_website,
+                  });
+                }}
+                checked={permissions.edit_website}
               />
               <label htmlFor="edit website">Edit website</label>
             </div>
@@ -504,7 +517,7 @@ const PermissionItem = ({ permissionData }) => {
               text="Back"
             />
             <Button
-              disables={editLoading}
+              disabled={editLoading}
               onClick={handleSave}
               classes={`text-[#ffffff] bg-[#009959] ${
                 editLoading && "opacity-50"
