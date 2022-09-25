@@ -32,8 +32,7 @@ const Users = () => {
     },
   });
 
-  const [createMember, { loading: memberLoading, error: memberError }] =
-    useMutation(CREATE_MEMBER);
+  const [createMember, { loading: memberLoading }] = useMutation(CREATE_MEMBER);
   const [showValidationError, setShowValidationError] = useState(false);
 
   const [showErrors, setShowErrors] = useState(false);
