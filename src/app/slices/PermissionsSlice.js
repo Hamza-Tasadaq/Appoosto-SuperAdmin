@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   permissions: {},
@@ -13,6 +13,13 @@ export const permissionsSlice = createSlice({
       state.permissions = action.payload;
     },
     newPermission: (state, action) => {
+      const { newPermission } = action.payload;
+      console.log(newPermission);
+      console.log(current(state.permissions.responscedata.permissions), {
+        newPermission,
+      });
+
+      state.permissions.responscedata.permissions.unshift(newPermission);
       // action.payload;
     },
     deletePerm: (state, action) => {
@@ -21,7 +28,6 @@ export const permissionsSlice = createSlice({
       // // console.log(current();
       // const permList = state.permissions.responscedata.permissions;
       // const newPermList = permList.filter((permItem) => permItem.id !== id);
-
       // state.permissions.responscedata.permissions = newPermList;
       // const updatedPermissions = state.permissions;
       // // console.log(current(.responscedata));

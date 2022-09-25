@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useMutation } from "@apollo/client";
 import { Input, Button } from "../../index";
 import PermissionsList from "./PermissionsList";
-import { CREATE_PERMISSION } from "../../../graphQl";
+import { CREATE_PERMISSION, GET_PERMISSIONS } from "../../../graphQl";
 
 const Permissions = () => {
   const [createPermission, { loading: mutationLoading, error: mutationError }] =
@@ -23,6 +23,8 @@ const Permissions = () => {
           variables: {
             name: formData.permissionName,
           },
+          refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+          awaitRefetchQueries: true,
         });
         if (data?.createPermission === "Success") {
           // Permission Added Success
