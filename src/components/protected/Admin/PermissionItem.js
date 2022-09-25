@@ -11,8 +11,10 @@ import { deletePerm } from "../../../app/slices/PermissionsSlice";
 const PermissionItem = ({ permissionData }) => {
   const dispatch = useDispatch();
 
-  const [deletePermission, { deleteLoading }] = useMutation(DELETE_PERMISSION);
-  const [editPermission, { editLoading }] = useMutation(EDIT_PERMISSION);
+  const [deletePermission, { loading: deleteLoading }] =
+    useMutation(DELETE_PERMISSION);
+  const [editPermission, { loading: editLoading }] =
+    useMutation(EDIT_PERMISSION);
 
   const [isClicked, setIsClicked] = useState(false);
   const [permissions, setPermissions] = useState(permissionData);
@@ -24,13 +26,9 @@ const PermissionItem = ({ permissionData }) => {
           ...permissions,
         },
       });
-      console.log({ data });
-      if (data?.deletePermission === "Success") {
-        // console.log("from here");
-        // Delete Permission from the redux Store
-        // dispatch(deletePerm({ id }));
-        // Permission Deleted Success
-        toast.success("Permission Deleted", {
+      if (data?.editPermission === "Success") {
+        // Permission Edit Success
+        toast.success("Permission Edited", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -90,8 +88,6 @@ const PermissionItem = ({ permissionData }) => {
       });
     }
   };
-
-  console.log({ permissions });
 
   return (
     <div className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4">
