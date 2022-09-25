@@ -36,7 +36,6 @@ const LogIn = () => {
         rememberMe: true,
       });
     } else {
-      // console.log(response);
     }
   }, [auth, navigate]);
 

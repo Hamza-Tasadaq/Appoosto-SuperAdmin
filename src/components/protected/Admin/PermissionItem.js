@@ -61,7 +61,6 @@ const PermissionItem = ({ permissionData }) => {
       });
 
       if (data?.deletePermission === "Success") {
-        console.log("from here");
         // Delete Permission from the redux Store
         dispatch(deletePerm({ id }));
         // Permission Deleted Success

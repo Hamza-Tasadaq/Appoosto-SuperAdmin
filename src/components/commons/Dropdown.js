@@ -8,7 +8,6 @@ const Dropdown = ({
   updateDropDown,
   ...rest
 }) => {
-  console.log(dropdownValues);
   const [isClicked, setIsClicked] = useState(false);
 
   const handleDropDownClick = () => {
