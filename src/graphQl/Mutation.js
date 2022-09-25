@@ -8,8 +8,18 @@ export const LOGIN_USER = gql`
 `;
 
 // Permissions
+
+// Create Permission
 export const CREATE_PERMISSION = gql`
   mutation createPermission($name: String) {
     createPermission(permission: { name: $name })
+  }
+`;
+
+// Delete Permission
+// Permissions
+export const DELETE_PERMISSION = gql`
+  mutation deletePermission($id: String!) {
+    deletePermission(id: $id)
   }
 `;

@@ -35,13 +35,13 @@ export const GET_PERMISSIONS = gql`
         totalPages
         currentPage
         permissions {
+          id
           name
           view_permissions
           create_permission
           add_permission
           delete_permission
           view_admins
-          create_admin
           add_admin
           delete_admin
           view_users
@@ -59,6 +59,7 @@ export const GET_PERMISSIONS = gql`
           view_translation
           add_translation
           edit_translation
+          edit_admin
           delete_translation
           view_icons
           add_icon

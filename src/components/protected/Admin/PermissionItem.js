@@ -1,12 +1,51 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 import Button from "../../commons/Button";
 import Dropdown from "../../commons/Dropdown";
 import Trash from "../../commons/Trash";
+import { DELETE_PERMISSION } from "../../../graphQl";
 
 const PermissionItem = ({ permissionData }) => {
+  const [deletePermission, { loading }] = useMutation(DELETE_PERMISSION);
+
   const [isClicked, setIsClicked] = useState(false);
   // console.log("PermisItem");
-  const [permissions, setPermissions] = useState(permissionData);
+  const [permissions] = useState(permissionData);
+
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await deletePermission({
+        variables: {
+          id,
+        },
+      });
+      if (data?.deletePermission === "Success") {
+        // Permission Deleted Success
+        toast.success("Permission Deleted", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (err) {
+      // Permission Deleted Failure
+      toast.success("Some Thing Wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <div className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4">
       <div className="flex items-center justify-between">
@@ -17,7 +56,13 @@ const PermissionItem = ({ permissionData }) => {
         <div>
           {isClicked ? (
             <div className="flex items-center space-x-3">
-              <Trash />
+              <div
+                onClick={() => {
+                  handleDelete(permissions.id);
+                }}
+              >
+                <Trash />
+              </div>
               <Button
                 classes={"bg-[#EF5350] text-[#ffffff]"}
                 text="Permission"
@@ -73,7 +118,7 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               <Dropdown
                 value={permissions.add_admin ? "Yes" : "No"}
-                dropdownValues={[permissions.add_admin ? " No " : "Yes"]}
+                dropdownValues={[permissions.edit_admin ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">

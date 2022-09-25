@@ -10,6 +10,7 @@ import { useAuth } from "../hooks/useAuth";
 const LogIn = () => {
   const auth = useAuth();
   const navigate = useNavigate();
+  
   const [login, { loading }] = useMutation(LOGIN_USER);
 
   const [showErrors, setShowErrors] = useState(false);
