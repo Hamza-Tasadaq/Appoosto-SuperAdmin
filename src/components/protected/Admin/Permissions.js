@@ -38,6 +38,9 @@ const Permissions = () => {
           setFormData({
             permissionName: "",
           });
+
+
+          
         } else if (mutationError) {
           // Permission Added Failure
           toast.error("Some Thing Wrong", {

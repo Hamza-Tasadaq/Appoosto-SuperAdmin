@@ -7,6 +7,7 @@ export {
   DELETE_PERMISSION,
   EDIT_PERMISSION,
 } from "./mutations/PermissionsMutation";
+export { CREATE_MEMBER } from "./mutations/UsersMutation";
 
 // Queries
 export { LOGGED_IN_USER } from "./queries/LoginQueries";

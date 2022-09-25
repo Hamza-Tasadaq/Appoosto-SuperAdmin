@@ -21,7 +21,7 @@ const PermissionsList = () => {
   } = useQuery(GET_PERMISSIONS, {
     variables: {
       page: page,
-      size: 1,
+      size: 10,
     },
   });
 
@@ -36,7 +36,7 @@ const PermissionsList = () => {
   }, [permissionsData, dispatch]);
 
   if (permissionsLoading) {
-    return <div>loading...</div>;
+    return <div className="flex justify-center">loading...</div>;
   }
 
   return (
