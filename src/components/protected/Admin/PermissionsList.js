@@ -20,7 +20,6 @@ const PermissionsList = () => {
     },
   });
 
-  console.log({ permissionsData });
   // Update State once the response is received
   useEffect(() => {
     if (permissionsData) {

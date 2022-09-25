@@ -5,6 +5,7 @@ import {
   CREATE_MEMBER,
   GET_PAGINATION_DATA,
   GET_PERMISSIONS_ID,
+  GET_PERMISSIONS,
 } from "../../../graphQl";
 import { Input, Button, ErrorText, SelectDropDown } from "../../index";
 import UsersList from "./UsersList";
@@ -68,6 +69,8 @@ const Users = () => {
             email: formData.email,
             permissionId: formData.permissionId,
           },
+          refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+          awaitRefetchQueries: true,
         });
         if (data.createMember === "success") {
           toast.success("User Added", {

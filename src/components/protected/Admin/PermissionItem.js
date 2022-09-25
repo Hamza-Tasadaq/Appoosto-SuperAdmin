@@ -5,7 +5,11 @@ import { useDispatch } from "react-redux";
 import Button from "../../commons/Button";
 import Dropdown from "../../commons/Dropdown";
 import Trash from "../../commons/Trash";
-import { DELETE_PERMISSION, EDIT_PERMISSION } from "../../../graphQl";
+import {
+  DELETE_PERMISSION,
+  EDIT_PERMISSION,
+  GET_PERMISSIONS,
+} from "../../../graphQl";
 import { deletePerm } from "../../../app/slices/PermissionsSlice";
 
 const PermissionItem = ({ permissionData }) => {
@@ -20,12 +24,13 @@ const PermissionItem = ({ permissionData }) => {
   const [permissions, setPermissions] = useState(permissionData);
 
   const handleSave = async () => {
-    console.log(permissions);
     try {
       const { data } = await editPermission({
         variables: {
           ...permissions,
         },
+        refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+        awaitRefetchQueries: true,
       });
       if (data?.editPermission === "Success") {
         // Permission Edit Success
@@ -59,6 +64,8 @@ const PermissionItem = ({ permissionData }) => {
         variables: {
           id,
         },
+        refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+        awaitRefetchQueries: true,
       });
 
       if (data?.deletePermission === "Success") {
