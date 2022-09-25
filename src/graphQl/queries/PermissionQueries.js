@@ -1,30 +1,5 @@
 import { gql } from "@apollo/client";
 
-// To get logged In user
-export const LOGGED_IN_USER = gql`
-  query getLoggedInUser {
-    veiwer {
-      id
-      username
-      class
-    }
-  }
-`;
-
-// To get Pagination Details
-export const GET_PAGINATION_DATA = gql`
-  query getPermissions($page: Int, $size: Int) {
-    getAdmin(pageinfo: { page: $page, size: $size }) {
-      message
-      responscedata {
-        totalItems
-        totalPages
-        currentPage
-      }
-    }
-  }
-`;
-
 // To get Permision List
 export const GET_PERMISSIONS = gql`
   query getPermissions($page: Int, $size: Int) {

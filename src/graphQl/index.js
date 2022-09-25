@@ -1,12 +1,17 @@
 export * from "./setup";
 
 // Mutations
+export { LOGIN_USER } from "./mutations/LoginMutation";
 export {
-  LOGIN_USER,
   CREATE_PERMISSION,
   DELETE_PERMISSION,
   EDIT_PERMISSION,
-} from "./Mutation";
+} from "./mutations/PermissionsMutation";
 
 // Queries
-export { LOGGED_IN_USER, GET_PAGINATION_DATA, GET_PERMISSIONS } from "./Query";
+export { LOGGED_IN_USER } from "./queries/LoginQueries";
+export { GET_PERMISSIONS } from "./queries/PermissionQueries";
+export {
+  GET_PAGINATION_DATA,
+  GET_PERMISSIONS_ID,
+} from "./queries/UsersQueries";
