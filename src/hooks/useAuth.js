@@ -16,7 +16,6 @@ function useProvideAuth() {
 
 export function ProvideAuth({ children }) {
   const auth = useProvideAuth();
-  console.log("Private");
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 

@@ -1,8 +1,19 @@
 import { useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 
-const Dropdown = ({ classes, value, dropdownValues = [], ...rest }) => {
+const Dropdown = ({
+  classes,
+  value,
+  dropdownValues = [],
+  updateDropDown,
+  ...rest
+}) => {
   const [isClicked, setIsClicked] = useState(false);
+
+  const handleDropDownClick = () => {
+    updateDropDown();
+    setIsClicked(!isClicked);
+  };
   return (
     <div className="relative">
       <div
@@ -17,11 +28,10 @@ const Dropdown = ({ classes, value, dropdownValues = [], ...rest }) => {
       {isClicked && (
         <div className="bg-[#ffffff] border border-[#d9d9d9] z-50 drop-shadow-xl absolute w-full">
           <ul>
-            {dropdownValues?.map((text) => (
+            {dropdownValues?.map((text, index) => (
               <li
-                onClick={() => {
-                  setIsClicked(!isClicked);
-                }}
+                key={index + 1}
+                onClick={() => handleDropDownClick()}
                 className="py-1 px-3  duration-300 hover:bg-[#D9D9D9]"
               >
                 {text}

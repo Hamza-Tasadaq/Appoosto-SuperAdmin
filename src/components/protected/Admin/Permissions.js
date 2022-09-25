@@ -21,7 +21,7 @@ const Permissions = () => {
       if (formData.permissionName) {
         const { data } = await createPermission({
           variables: {
-            name: formData.name,
+            name: formData.permissionName,
           },
         });
         if (data?.createPermission === "Success") {
@@ -34,6 +34,9 @@ const Permissions = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
+          });
+          setFormData({
+            permissionName: "",
           });
         } else if (mutationError) {
           // Permission Added Failure

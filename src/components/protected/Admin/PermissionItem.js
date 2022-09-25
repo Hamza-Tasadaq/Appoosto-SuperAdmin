@@ -1,26 +1,34 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
 import Button from "../../commons/Button";
 import Dropdown from "../../commons/Dropdown";
 import Trash from "../../commons/Trash";
-import { DELETE_PERMISSION } from "../../../graphQl";
+import { DELETE_PERMISSION, EDIT_PERMISSION } from "../../../graphQl";
+import { deletePerm } from "../../../app/slices/PermissionsSlice";
 
 const PermissionItem = ({ permissionData }) => {
-  const [deletePermission, { loading }] = useMutation(DELETE_PERMISSION);
+  const dispatch = useDispatch();
+
+  const [deletePermission, { deleteLoading }] = useMutation(DELETE_PERMISSION);
+  const [editPermission, { editLoading }] = useMutation(EDIT_PERMISSION);
 
   const [isClicked, setIsClicked] = useState(false);
-  // console.log("PermisItem");
-  const [permissions] = useState(permissionData);
+  const [permissions, setPermissions] = useState(permissionData);
 
-  const handleDelete = async (id) => {
+  const handleSave = async () => {
     try {
-      const { data } = await deletePermission({
+      const { data } = await editPermission({
         variables: {
-          id,
+          ...permissions,
         },
       });
+      console.log({ data });
       if (data?.deletePermission === "Success") {
+        // console.log("from here");
+        // Delete Permission from the redux Store
+        // dispatch(deletePerm({ id }));
         // Permission Deleted Success
         toast.success("Permission Deleted", {
           position: "top-right",
@@ -34,7 +42,7 @@ const PermissionItem = ({ permissionData }) => {
       }
     } catch (err) {
       // Permission Deleted Failure
-      toast.success("Some Thing Wrong", {
+      toast.error("Some Thing Wrong", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -45,6 +53,45 @@ const PermissionItem = ({ permissionData }) => {
       });
     }
   };
+
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await deletePermission({
+        variables: {
+          id,
+        },
+      });
+
+      if (data?.deletePermission === "Success") {
+        console.log("from here");
+        // Delete Permission from the redux Store
+        dispatch(deletePerm({ id }));
+        // Permission Deleted Success
+        toast.success("Permission Deleted", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (err) {
+      // Permission Deleted Failure
+      toast.error("Some Thing Wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  console.log({ permissions });
 
   return (
     <div className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4">
@@ -58,10 +105,12 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex items-center space-x-3">
               <div
                 onClick={() => {
-                  handleDelete(permissions.id);
+                  if (!deleteLoading) {
+                    handleDelete(permissions.id);
+                  }
                 }}
               >
-                <Trash />
+                <Trash classes={deleteLoading && "opacity-50"} />
               </div>
               <Button
                 classes={"bg-[#EF5350] text-[#ffffff]"}
@@ -104,6 +153,12 @@ const PermissionItem = ({ permissionData }) => {
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_admins: !permissions.view_admins,
+                  })
+                }
                 value={permissions.view_admins ? "Yes" : "No"}
                 dropdownValues={[permissions.view_admins ? " No " : "Yes"]}
               />
@@ -111,18 +166,36 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               {" "}
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    add_admin: !permissions.add_admin,
+                  })
+                }
                 value={permissions.add_admin ? "Yes" : "No"}
                 dropdownValues={[permissions.add_admin ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
-                value={permissions.add_admin ? "Yes" : "No"}
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_admin: !permissions.edit_admin,
+                  })
+                }
+                value={permissions.edit_admin ? "Yes" : "No"}
                 dropdownValues={[permissions.edit_admin ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_admin: !permissions.delete_admin,
+                  })
+                }
                 value={permissions.delete_admin ? "Yes" : "No"}
                 dropdownValues={[permissions.delete_admin ? " No " : "Yes"]}
               />
@@ -134,6 +207,12 @@ const PermissionItem = ({ permissionData }) => {
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_users: !permissions.view_users,
+                  })
+                }
                 value={permissions.view_users ? "Yes" : "No"}
                 dropdownValues={[permissions.view_users ? " No " : "Yes"]}
               />
@@ -141,18 +220,36 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               {" "}
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    add_user: !permissions.add_user,
+                  })
+                }
                 value={permissions.add_user ? "Yes" : "No"}
                 dropdownValues={[permissions.add_user ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_user: !permissions.edit_user,
+                  })
+                }
                 value={permissions.edit_user ? "Yes" : "No"}
                 dropdownValues={[permissions.edit_user ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_user: !permissions.delete_user,
+                  })
+                }
                 value={permissions.delete_user ? "Yes" : "No"}
                 dropdownValues={[permissions.delete_user ? " No " : "Yes"]}
               />
@@ -164,6 +261,12 @@ const PermissionItem = ({ permissionData }) => {
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_plans: !permissions.view_plans,
+                  })
+                }
                 value={permissions.view_plans ? "Yes" : "No"}
                 dropdownValues={[permissions.view_plans ? " No " : "Yes"]}
               />
@@ -171,18 +274,36 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               {" "}
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    add_plan: !permissions.add_plan,
+                  })
+                }
                 value={permissions.add_plan ? "Yes" : "No"}
                 dropdownValues={[permissions.add_plan ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_plan: !permissions.edit_plan,
+                  })
+                }
                 value={permissions.edit_plan ? "Yes" : "No"}
                 dropdownValues={[permissions.edit_plan ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_plan: !permissions.delete_plan,
+                  })
+                }
                 value={permissions.delete_plan ? "Yes" : "No"}
                 dropdownValues={[permissions.delete_plan ? " No " : "Yes"]}
               />
@@ -194,6 +315,12 @@ const PermissionItem = ({ permissionData }) => {
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_languages: !permissions.view_languages,
+                  })
+                }
                 value={permissions.view_languages ? "Yes" : "No"}
                 dropdownValues={[permissions.view_languages ? " No " : "Yes"]}
               />
@@ -201,18 +328,36 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               {" "}
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    add_language: !permissions.add_language,
+                  })
+                }
                 value={permissions.add_language ? "Yes" : "No"}
                 dropdownValues={[permissions.add_language ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_language: !permissions.edit_language,
+                  })
+                }
                 value={permissions.edit_language ? "Yes" : "No"}
                 dropdownValues={[permissions.edit_language ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_language: !permissions.delete_language,
+                  })
+                }
                 value={permissions.delete_language ? "Yes" : "No"}
                 dropdownValues={[permissions.delete_language ? " No " : "Yes"]}
               />
@@ -224,6 +369,12 @@ const PermissionItem = ({ permissionData }) => {
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_translation: !permissions.view_translation,
+                  })
+                }
                 value={permissions.view_translation ? "Yes" : "No"}
                 dropdownValues={[permissions.view_translation ? " No " : "Yes"]}
               />
@@ -231,18 +382,36 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               {" "}
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    add_translation: !permissions.add_translation,
+                  })
+                }
                 value={permissions.add_translation ? "Yes" : "No"}
                 dropdownValues={[permissions.add_translation ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_translation: !permissions.edit_translation,
+                  })
+                }
                 value={permissions.edit_translation ? "Yes" : "No"}
                 dropdownValues={[permissions.edit_translation ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_translation: !permissions.delete_translation,
+                  })
+                }
                 value={permissions.delete_translation ? "Yes" : "No"}
                 dropdownValues={[
                   permissions.delete_translation ? " No " : "Yes",
@@ -256,6 +425,12 @@ const PermissionItem = ({ permissionData }) => {
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_icons: !permissions.view_icons,
+                  })
+                }
                 value={permissions.view_icons ? "Yes" : "No"}
                 dropdownValues={[permissions.view_icons ? " No " : "Yes"]}
               />
@@ -263,18 +438,36 @@ const PermissionItem = ({ permissionData }) => {
             <div className="flex-1 ">
               {" "}
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    add_icon: !permissions.add_icon,
+                  })
+                }
                 value={permissions.add_icon ? "Yes" : "No"}
                 dropdownValues={[permissions.add_icon ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_icon: !permissions.edit_icon,
+                  })
+                }
                 value={permissions.edit_icon ? "Yes" : "No"}
                 dropdownValues={[permissions.edit_icon ? " No " : "Yes"]}
               />
             </div>
             <div className="flex-1 ">
               <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_icon: !permissions.delete_icon,
+                  })
+                }
                 value={permissions.delete_icon ? "Yes" : "No"}
                 dropdownValues={[permissions.delete_icon ? " No " : "Yes"]}
               />
@@ -315,7 +508,14 @@ const PermissionItem = ({ permissionData }) => {
               classes={"text-[#ffffff] bg-[#14365D]"}
               text="Back"
             />
-            <Button classes={"text-[#ffffff] bg-[#009959]"} text="Save" />
+            <Button
+              disables={editLoading}
+              onClick={handleSave}
+              classes={`text-[#ffffff] bg-[#009959] ${
+                editLoading && "opacity-50"
+              }`}
+              text="Save"
+            />
           </div>
         </div>
       )}
