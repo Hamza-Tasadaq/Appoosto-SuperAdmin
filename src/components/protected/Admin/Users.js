@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
-import { AiFillCaretDown } from "react-icons/ai";
 import {
   CREATE_MEMBER,
   GET_PAGINATION_DATA,
   GET_PERMISSIONS_ID,
 } from "../../../graphQl";
-import { Input, Button, ErrorText } from "../../index";
+import { Input, Button, ErrorText, SelectDropDown } from "../../index";
 import UsersList from "./UsersList";
 
 const Users = () => {
@@ -115,10 +114,10 @@ const Users = () => {
     <div className="space-y-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#ffffff] rounded-lg px-5 py-6 boxShadow flex  justify-between"
+        className="bg-[#ffffff] rounded-lg px-5 py-6 boxShadow flex  justify-between items-end"
       >
-        <div className="flex-1 flex  space-x-3">
-          <div className="space-y-1">
+        <div className="flex-1 flex">
+          <div className="space-y-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Username</h3>
             <Input
               onChange={handleChange}
@@ -134,7 +133,7 @@ const Users = () => {
               <ErrorText text="This Username Already Exist" />
             )}
           </div>{" "}
-          <div className="space-y-1">
+          <div className="space-y-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Email</h3>
             <Input
               onChange={handleChange}
@@ -150,7 +149,7 @@ const Users = () => {
               <ErrorText text="This Email Already Exist" />
             )}
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Password</h3>
             <Input
               onChange={handleChange}
@@ -163,9 +162,9 @@ const Users = () => {
               value={formData.password}
             />
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Permission</h3>
-            <Dropdown
+            <SelectDropDown
               updateDropDown={(id) => {
                 setFormData({
                   ...formData,
@@ -188,7 +187,7 @@ const Users = () => {
           <Button
             disabled={memberLoading}
             type="submit"
-            classes={`bg-[#009959] text-[#ffffff] ${
+            classes={`bg-[#009959] m-1.5 text-[#ffffff] ${
               memberLoading && "opacity-50"
             }`}
             text="Save"
@@ -202,48 +201,3 @@ const Users = () => {
 };
 
 export default Users;
-
-const Dropdown = ({
-  classes,
-  value,
-  dropdownValues = [],
-  updateDropDown,
-  ...rest
-}) => {
-  const [isClicked, setIsClicked] = useState(false);
-  const [isSelected, setIsSelected] = useState("");
-
-  const handleDropDownClick = (id, name) => {
-    updateDropDown(id);
-    setIsSelected(name);
-    setIsClicked(!isClicked);
-  };
-  return (
-    <div className="relative">
-      <div
-        onClick={() => {
-          setIsClicked(!isClicked);
-        }}
-        className={`outline-none border border-[#D9D9D9] rounded-lg px-3 py-2 cursor-pointer flex items-center justify-between ${classes}`}
-      >
-        <h3>{isSelected ? isSelected : value}</h3>
-        <AiFillCaretDown />
-      </div>
-      {isClicked && (
-        <div className="bg-[#ffffff] border border-[#d9d9d9] z-50 drop-shadow-xl absolute w-full">
-          <ul>
-            {dropdownValues?.map(({ name, id }, index) => (
-              <li
-                key={index + 1}
-                onClick={() => handleDropDownClick(id, name)}
-                className="py-1 px-3  duration-300 hover:bg-[#D9D9D9]"
-              >
-                {name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-};
