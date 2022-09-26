@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -20,7 +20,24 @@ const PermissionItem = ({ permissionData }) => {
   const [editPermission, { loading: editLoading }] =
     useMutation(EDIT_PERMISSION);
 
+  const ref = useRef();
   const [isClicked, setIsClicked] = useState(false);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (e) => {
+      // If the menu is open and the clicked target is not within the menu,
+      // then close the menu
+      if (isClicked && ref.current && !ref.current.contains(e.target)) {
+        setIsClicked(false);
+      }
+    };
+    document.addEventListener("mousedown", checkIfClickedOutside);
+    return () => {
+      // Cleanup the event listener
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, [isClicked]);
+
   const [permissions, setPermissions] = useState(permissionData);
 
   const handleSave = async () => {
@@ -97,7 +114,10 @@ const PermissionItem = ({ permissionData }) => {
   };
 
   return (
-    <div className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4">
+    <div
+      ref={ref}
+      className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4"
+    >
       <div className="flex items-center justify-between">
         <div>
           <h1 className="font-semibold text-base">{permissions.name}</h1>
