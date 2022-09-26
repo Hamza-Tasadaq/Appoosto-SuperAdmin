@@ -15,4 +15,5 @@ export { GET_PERMISSIONS } from "./queries/PermissionQueries";
 export {
   GET_PAGINATION_DATA,
   GET_PERMISSIONS_ID,
+  GET_ADMINS,
 } from "./queries/UsersQueries";

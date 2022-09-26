@@ -31,3 +31,24 @@ export const GET_PERMISSIONS_ID = gql`
     }
   }
 `;
+
+// To get the Users
+
+export const GET_ADMINS = gql`
+  query getAdmin($page: Int, $size: Int) {
+    getAdmin(pageinfo: { page: $page, size: $size }) {
+      message
+      responscedata {
+        totalItems
+        totalPages
+        currentPage
+        admins {
+          username
+          id
+          email
+          password
+        }
+      }
+    }
+  }
+`;

@@ -7,8 +7,8 @@ import { GET_PERMISSIONS } from "../../../graphQl";
 const PermissionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-
   const [page, setPage] = useState(1);
+
   const {
     loading: permissionsLoading,
     error: permissionsError,
@@ -23,7 +23,6 @@ const PermissionsList = () => {
   // Update State once the response is received
   useEffect(() => {
     if (permissionsData) {
-      // Add Data to the redux State
       setCurrentPage(permissionsData?.getPermission?.responscedata.currentPage);
       setTotalPages(permissionsData?.getPermission?.responscedata.totalPages);
     }

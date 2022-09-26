@@ -6,6 +6,7 @@ import {
   GET_PAGINATION_DATA,
   GET_PERMISSIONS_ID,
   GET_PERMISSIONS,
+  GET_ADMINS,
 } from "../../../graphQl";
 import { Input, Button, ErrorText, SelectDropDown } from "../../index";
 import UsersList from "./UsersList";
@@ -69,7 +70,12 @@ const Users = () => {
             email: formData.email,
             permissionId: formData.permissionId,
           },
-          refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+          refetchQueries: [
+            { query: GET_PERMISSIONS },
+            { query: GET_ADMINS },
+            "getAdmin",
+            "getPermissions",
+          ],
           awaitRefetchQueries: true,
         });
         if (data.createMember === "success") {
