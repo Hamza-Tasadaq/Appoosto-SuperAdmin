@@ -14,7 +14,7 @@ const Admin = () => {
     <div className="space-y-4">
       <div className="flex items-center justify-between pr-4">
         <h2 className="text-[#14365D] font-bold text-lg">
-          {tab === 1 ? "Add User" : "Add Permission"}
+          {tab === 1 ? "Add Admin" : "Add Permission"}
         </h2>
 
         <div className="flex items-center space-x-3">
