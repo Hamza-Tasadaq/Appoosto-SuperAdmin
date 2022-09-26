@@ -51,7 +51,7 @@ const AdminsList = () => {
   return (
     <div className="bg-[#ffffff] rounded-lg w-full px-5 py-6 boxShadow space-y-4">
       <div className="flex items-center justify-between w-full">
-        <h1 className="font-bold">Users (17)</h1>
+        <h1 className="font-bold">Admins (17)</h1>
         <div className="w-48">
           <Dropdown
             value={"Filter by role"}
