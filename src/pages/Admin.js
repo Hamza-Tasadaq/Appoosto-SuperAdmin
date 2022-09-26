@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import { Users, Permissions } from "../components";
+import { Admins, Permissions } from "../components";
 
 const tabs = {
-  1: Users,
+  1: Admins,
   2: Permissions,
 };
 

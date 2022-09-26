@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_PAGINATION_DATA, GET_PERMISSIONS_ID } from "../../../graphQl";
 import { Button, Input, Switch, SelectDropDown, Trash } from "../../index";
 
-const UserItem = ({ adminData }) => {
+const AdminItem = ({ adminData }) => {
   const [admins, setAdmins] = useState(adminData);
 
   const { data: paginationData } = useQuery(GET_PAGINATION_DATA, {
@@ -108,4 +108,4 @@ const UserItem = ({ adminData }) => {
   );
 };
 
-export default UserItem;
+export default AdminItem;

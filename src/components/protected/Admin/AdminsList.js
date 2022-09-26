@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import Dropdown from "../../commons/Dropdown";
 import Pagination from "../../commons/Pagination";
-import UserItem from "./UserItem";
+import AdminItem from "./AdminItem";
 import { GET_ADMINS } from "../../../graphQl";
 
-const UsersList = () => {
+const AdminsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
@@ -62,7 +62,7 @@ const UsersList = () => {
 
       <div className="mx-1 rounded-lg p-4  bg-[#EFF3F7] space-y-3">
         {adminsData?.getAdmin?.responscedata?.admins.map((adminData) => (
-          <UserItem key={adminData.id} adminData={adminData} />
+          <AdminItem key={adminData.id} adminData={adminData} />
         ))}
         <Pagination
           setPage={setPage}
@@ -74,4 +74,4 @@ const UsersList = () => {
   );
 };
 
-export default UsersList;
+export default AdminsList;

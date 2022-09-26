@@ -9,9 +9,9 @@ import {
   GET_ADMINS,
 } from "../../../graphQl";
 import { Input, Button, ErrorText, SelectDropDown } from "../../index";
-import UsersList from "./UsersList";
+import AdminsList from "./AdminsList";
 
-const Users = () => {
+const Admins = () => {
   const {
     loading: paginationLoading,
     error: paginationError,
@@ -204,9 +204,9 @@ const Users = () => {
         </div>
       </form>
 
-      <UsersList />
+      <AdminsList />
     </div>
   );
 };
 
-export default Users;
+export default Admins;

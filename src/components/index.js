@@ -21,7 +21,7 @@ export { default as Home } from "./protected/Dashboard/Home";
 export { default as Logs } from "./protected/Dashboard/Logs";
 
 // Admin
-export { default as Users } from "./protected/Admin/Users";
+export { default as Admins } from "./protected/Admin/Admins";
 export { default as Permissions } from "./protected/Admin/Permissions";
 
 // Charts
