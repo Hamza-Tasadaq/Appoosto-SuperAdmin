@@ -36,7 +36,7 @@ const Admin = () => {
               tab === 1 ? "bg-[#14365D] text-[#ffffff]" : "text-[#14365D]"
             } border border-[#14365D] px-4 py-1 rounded-lg font-semibold text-base`}
           >
-            Users
+            Admins
           </button>
         </div>
       </div>

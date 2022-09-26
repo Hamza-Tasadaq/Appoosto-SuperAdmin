@@ -1,11 +1,27 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
-import Dropdown from "../../commons/Dropdown";
+import SelectDropDown from "../../commons/SelectDropDown";
 import Pagination from "../../commons/Pagination";
 import AdminItem from "./AdminItem";
-import { GET_ADMINS } from "../../../graphQl";
+import {
+  GET_ADMINS,
+  GET_PAGINATION_DATA,
+  GET_PERMISSIONS_ID,
+} from "../../../graphQl";
 
 const AdminsList = () => {
+  const { data: paginationData } = useQuery(GET_PAGINATION_DATA, {
+    variables: {
+      page: 1,
+      size: 1,
+    },
+  });
+  const { data: permissionsData } = useQuery(GET_PERMISSIONS_ID, {
+    variables: {
+      page: 1,
+      size: paginationData?.getPermission.responscedata.totalItems,
+    },
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
@@ -53,9 +69,20 @@ const AdminsList = () => {
       <div className="flex items-center justify-between w-full">
         <h1 className="font-bold">Admins (17)</h1>
         <div className="w-48">
-          <Dropdown
-            value={"Filter by role"}
-            dropdownValues={["Value1", "Value2", "Value3", "Value4"]}
+          <SelectDropDown
+            updateDropDown={(id) => {
+              // setFormData({
+              //   ...formData,
+              //   permissionId: id,
+              // });
+            }}
+            // classes={`w-full ${
+            //   showErrors && formData.permissionId === "" && " border-[#D85C27]"
+            // }`}
+            value={"Select Permissions"}
+            dropdownValues={permissionsData?.getPermission?.responscedata?.permissions?.map(
+              (permissionItem) => permissionItem
+            )}
           />
         </div>
       </div>
