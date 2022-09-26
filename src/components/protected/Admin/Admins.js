@@ -204,7 +204,7 @@ const Admins = () => {
         </div>
       </form>
 
-      {/* <AdminsList /> */}
+      <AdminsList />
     </div>
   );
 };
