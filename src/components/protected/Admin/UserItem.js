@@ -21,12 +21,12 @@ const UserItem = ({ adminData }) => {
 
   const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="rounded-lg  bg-[#ffffff] py-4 px-6 space-y-6">
+    <div className="rounded-lg  bg-[#ffffff] py-4 px-4 space-y-6">
       <div
         onClick={() => {
           setIsClicked(true);
         }}
-        className="font-medium  flex items-center space-x-2"
+        className="font-medium  flex items-center space-x-4"
       >
         <div className="flex-1">
           <h1 className="font-semibold w-full">{admins.username}</h1>
@@ -83,7 +83,7 @@ const UserItem = ({ adminData }) => {
           )}
         </div>
 
-        <div className="flex-1 flex justify-end">
+        <div className="flex justify-end">
           {isClicked && (
             <div className="flex items-center">
               <Trash />
