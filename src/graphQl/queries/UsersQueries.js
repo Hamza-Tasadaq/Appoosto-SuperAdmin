@@ -47,6 +47,10 @@ export const GET_ADMINS = gql`
           id
           email
           password
+          permission {
+            name
+            id
+          }
         }
       }
     }

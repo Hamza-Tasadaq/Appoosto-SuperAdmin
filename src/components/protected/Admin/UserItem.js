@@ -1,7 +1,24 @@
 import { useState } from "react";
-import { Button, Input, Switch, Dropdown, Trash } from "../../index";
+import { useQuery } from "@apollo/client";
+import { GET_PAGINATION_DATA, GET_PERMISSIONS_ID } from "../../../graphQl";
+import { Button, Input, Switch, SelectDropDown, Trash } from "../../index";
 
-const UserItem = () => {
+const UserItem = ({ adminData }) => {
+  const [admins, setAdmins] = useState(adminData);
+
+  const { data: paginationData } = useQuery(GET_PAGINATION_DATA, {
+    variables: {
+      page: 1,
+      size: 1,
+    },
+  });
+  const { data: permissionsData } = useQuery(GET_PERMISSIONS_ID, {
+    variables: {
+      page: 1,
+      size: paginationData?.getPermission.responscedata.totalItems,
+    },
+  });
+
   const [isClicked, setIsClicked] = useState(false);
   return (
     <div className="rounded-lg  bg-[#ffffff] py-4 px-6 space-y-6">
@@ -12,32 +29,54 @@ const UserItem = () => {
         className="font-medium  flex items-center space-x-2"
       >
         <div className="flex-1">
-          <h1 className="font-semibold w-full">User</h1>
+          <h1 className="font-semibold w-full">{admins.username}</h1>
         </div>
         <div className="flex-1">
-          <h2>mail@mail.com</h2>
+          <h2>{admins.email}</h2>
         </div>
         <div className="flex-1">
           {isClicked ? (
-            <Dropdown
-              value={"Role"}
-              dropdownValues={["Value1", "Value2", "Value3", "Value4"]}
+            <SelectDropDown
+              updateDropDown={(id) => {
+                setAdmins({
+                  ...admins,
+                  permission:
+                    permissionsData?.getPermission?.responscedata?.permissions?.find(
+                      (perm) => perm.id === id
+                    ),
+                });
+              }}
+              // classes={`w-full ${
+              //   showErrors &&
+              //   formData.permissionId === "" &&
+              //   " border-[#D85C27]"
+              // }`}
+              value={admins.permission.name}
+              dropdownValues={permissionsData?.getPermission?.responscedata?.permissions?.filter(
+                (permissionItem) => permissionItem
+              )}
             />
           ) : (
-            <h2>Role 1</h2>
+            <h2>{admins.permission.name}</h2>
           )}
         </div>
         <div className="flex-1">
           {isClicked ? (
             <Input
               type="password"
-              value="12345678"
+              value={admins.password}
               classes={"tracking-[0.2rem] w-full"}
+              onChange={(e) => {
+                setAdmins({
+                  ...admins,
+                  password: e.target.value,
+                });
+              }}
             />
           ) : (
             <input
               type="password"
-              value="12345678"
+              value={admins.password}
               className="outline-none bg-transparent tracking-[0.2rem]"
               disabled={true}
             />

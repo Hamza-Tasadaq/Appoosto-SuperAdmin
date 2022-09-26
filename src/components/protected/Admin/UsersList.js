@@ -21,7 +21,6 @@ const UsersList = () => {
     },
   });
 
-  console.log(adminsData.getAdmin);
   useEffect(() => {
     if (adminsData) {
       setCurrentPage(adminsData?.getAdmin?.responscedata.currentPage);
@@ -62,7 +61,7 @@ const UsersList = () => {
       </div>
 
       <div className="mx-1 rounded-lg p-4  bg-[#EFF3F7] space-y-3">
-        {adminsData.getAdmin.responscedata?.admins.map((adminData) => (
+        {adminsData?.getAdmin?.responscedata?.admins.map((adminData) => (
           <UserItem key={adminData.id} adminData={adminData} />
         ))}
         <Pagination
