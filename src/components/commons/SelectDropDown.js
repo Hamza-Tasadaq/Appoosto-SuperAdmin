@@ -23,7 +23,9 @@ const SelectDropDown = ({
         }}
         className={`outline-none border border-[#D9D9D9] rounded-lg px-3 py-2 cursor-pointer flex items-center justify-between ${classes}`}
       >
-        <h3>{isSelected ? isSelected : value}</h3>
+        <h3 className={`${!isSelected && "text-[#9CACCB]"}`}>
+          {isSelected ? isSelected : value}
+        </h3>
         <AiFillCaretDown />
       </div>
       {isClicked && (
