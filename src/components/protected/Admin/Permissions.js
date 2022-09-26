@@ -64,10 +64,10 @@ const Permissions = () => {
     <div className="space-y-4">
       <form
         onSubmit={submitHandler}
-        className="bg-[#ffffff] rounded-lg px-5 py-6 boxShadow flex items-end justify-between"
+        className="bg-[#ffffff] rounded-lg px-5 py-6 boxShadow flex items-end space-x-4"
       >
         <div className="flex-1 space-y-2">
-          <h3 className="text-[#727481]">Permission Name</h3>
+          <h3 className="text-[#727481] text-sm">Permission Name</h3>
           <Input
             value={formData.permissionName}
             onChange={(e) => {
@@ -83,7 +83,7 @@ const Permissions = () => {
             }`}
           />
         </div>
-        <div className="flex-1 flex items-center justify-end">
+        <div className="flex-1 flex items-center ">
           <Button
             disabled={mutationLoading}
             type="submit"
