@@ -60,8 +60,8 @@ const AdminItem = ({ adminData }) => {
             <h2>{admins.permission.name}</h2>
           )}
         </div>
-        <div className="flex-1">
-          {isClicked ? (
+        {isClicked && (
+          <div className="flex-1">
             <Input
               type="password"
               value={admins.password}
@@ -73,15 +73,8 @@ const AdminItem = ({ adminData }) => {
                 });
               }}
             />
-          ) : (
-            <input
-              type="password"
-              value={admins.password}
-              className="outline-none bg-transparent tracking-[0.2rem]"
-              disabled={true}
-            />
-          )}
-        </div>
+          </div>
+        )}
 
         <div className="flex justify-end">
           {isClicked && (

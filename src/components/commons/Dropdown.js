@@ -20,7 +20,7 @@ const Dropdown = ({
         onClick={() => {
           setIsClicked(!isClicked);
         }}
-        className={`outline-none border border-[#D9D9D9] rounded-lg px-3 py-2 cursor-pointer flex items-center justify-between ${classes}`}
+        className={`outline-none text-xs border border-[#D9D9D9] rounded-lg px-3 py-2 cursor-pointer flex items-center justify-between ${classes}`}
       >
         <h3>{value}</h3>
         <AiFillCaretDown />
@@ -32,7 +32,7 @@ const Dropdown = ({
               <li
                 key={index + 1}
                 onClick={() => handleDropDownClick()}
-                className="py-1 px-3  duration-300 hover:bg-[#D9D9D9]"
+                className="py-1 px-3 text-xs duration-300 hover:bg-[#D9D9D9]"
               >
                 {text}
               </li>
