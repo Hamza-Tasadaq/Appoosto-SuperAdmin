@@ -123,15 +123,15 @@ const Admins = () => {
     <div className="space-y-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#ffffff] rounded-lg px-5 py-6 boxShadow flex  justify-between items-end"
+        className="bg-[#ffffff] rounded-lg px-5 py-6 boxShadow flex flex-col justify-between "
       >
-        <div className="flex-1 flex">
-          <div className="space-y-1 w-52 mx-1.5 my-1.5">
-            <h3 className="text-[#727481] text-sm">Username</h3>
+        <div className="flex-1 flex flex-wrap">
+          <div className="space-y-1 flex-1 mx-1.5 my-1.5">
+            <h3 className="text-[#727481]">Username</h3>
             <Input
               onChange={handleChange}
               name="userName"
-              classes={`w-full text-xs ${
+              classes={`w-full ${
                 showErrors && formData.userName === "" && " border-[#D85C27]"
               }`}
               placeholder="Insert Username"
@@ -142,7 +142,7 @@ const Admins = () => {
               <ErrorText text="This Username Already Exist" />
             )}
           </div>{" "}
-          <div className="space-y-1 w-52 mx-1.5 my-1.5">
+          <div className="space-y-1 flex-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Email</h3>
             <Input
               onChange={handleChange}
@@ -158,7 +158,7 @@ const Admins = () => {
               <ErrorText text="This Email Already Exist" />
             )}
           </div>
-          <div className="space-y-1 w-52 mx-1.5 my-1.5">
+          <div className="space-y-1 flex-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Password</h3>
             <Input
               onChange={handleChange}
@@ -171,7 +171,7 @@ const Admins = () => {
               value={formData.password}
             />
           </div>
-          <div className="space-y-1 w-52 mx-1.5 my-1.5">
+          <div className="space-y-1 flex-1 mx-1.5 my-1.5">
             <h3 className="text-[#727481]">Permission</h3>
             <SelectDropDown
               updateDropDown={(id) => {
@@ -204,7 +204,7 @@ const Admins = () => {
         </div>
       </form>
 
-      <AdminsList />
+      {/* <AdminsList /> */}
     </div>
   );
 };
