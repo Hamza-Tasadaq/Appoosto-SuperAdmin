@@ -35,7 +35,7 @@ const SelectDropDown = ({
               <li
                 key={index + 1}
                 onClick={() => handleDropDownClick(id, name)}
-                className="py-1 px-3  duration-300 hover:bg-[#D9D9D9]"
+                className="py-1 px-3 text-xs duration-300 hover:bg-[#D9D9D9]"
               >
                 {name}
               </li>
