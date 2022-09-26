@@ -127,7 +127,7 @@ const Admins = () => {
       >
         <div className="flex-1 flex flex-wrap">
           <div className="space-y-1 flex-1 mx-1.5 my-1.5">
-            <h3 className="text-[#727481]">Username</h3>
+            <h3 className="text-[#727481] text-sm">Username</h3>
             <Input
               onChange={handleChange}
               name="userName"
@@ -143,7 +143,7 @@ const Admins = () => {
             )}
           </div>{" "}
           <div className="space-y-1 flex-1 mx-1.5 my-1.5">
-            <h3 className="text-[#727481]">Email</h3>
+            <h3 className="text-[#727481] text-sm">Email</h3>
             <Input
               onChange={handleChange}
               name="email"
@@ -159,7 +159,7 @@ const Admins = () => {
             )}
           </div>
           <div className="space-y-1 flex-1 mx-1.5 my-1.5">
-            <h3 className="text-[#727481]">Password</h3>
+            <h3 className="text-[#727481] text-sm">Password</h3>
             <Input
               onChange={handleChange}
               name="password"
@@ -172,7 +172,7 @@ const Admins = () => {
             />
           </div>
           <div className="space-y-1 flex-1 mx-1.5 my-1.5">
-            <h3 className="text-[#727481]">Permission</h3>
+            <h3 className="text-[#727481] text-sm">Permission</h3>
             <SelectDropDown
               updateDropDown={(id) => {
                 setFormData({
