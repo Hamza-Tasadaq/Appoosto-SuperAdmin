@@ -87,7 +87,7 @@ const Permissions = () => {
           <Button
             disabled={mutationLoading}
             type="submit"
-            classes={`bg-[#009959] text-[#ffffff] ${
+            classes={`bg-[#009959] w-full text-[#ffffff] ${
               mutationLoading && "opacity-50"
             }`}
             text="Save"
