@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavItem = ({ NavItemData = {}, setShowSideBar = () => {} }) => {
+  const location = useLocation();
   const { text = "", href = "" } = NavItemData;
+  console.log();
   return (
     <NavLink
       onClick={() => {
@@ -9,15 +11,13 @@ const NavItem = ({ NavItemData = {}, setShowSideBar = () => {} }) => {
       }}
       to={href}
     >
-      {({ isActive }) => (
-        <div
-          className={`${
-            isActive && "bg-[#14365D] text-[#ffffff] font-bold"
-          } rounded-lg p-3 flex items-center font-semibold space-x-3`}
-        >
-          <h1>{text}</h1>
-        </div>
-      )}
+      <div
+        className={`${
+          location.pathname === href && "bg-[#14365D] text-[#ffffff] font-bold"
+        } rounded-lg p-3 flex items-center font-semibold space-x-3`}
+      >
+        <h1>{text}</h1>
+      </div>
     </NavLink>
   );
 };
