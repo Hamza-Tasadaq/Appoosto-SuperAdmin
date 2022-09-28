@@ -24,6 +24,10 @@ export { default as Logs } from "./protected/Dashboard/Logs";
 export { default as Admins } from "./protected/Admin/Admins";
 export { default as Permissions } from "./protected/Admin/Permissions";
 
+// Resturant
+export { default as ResturantList } from "./protected/Resturants/ResturantList";
+export { default as ResturantItem } from "./protected/Resturants/ResturantItem";
+
 // Charts
 export { default as PieChart } from "./protected/Charts/PieChart";
 export { default as BarChart } from "./protected/Charts/BarChart";

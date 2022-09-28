@@ -13,6 +13,7 @@ import Translations from "./pages/Translations";
 
 import "./App.css";
 import { ProvideAuth } from "./hooks/useAuth";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -24,10 +25,10 @@ function App() {
           <ProvideAuth>
             <Routes>
               {/* Public Routes */}
-              <Route path="/" element={<LogIn />} />
+              <Route path="/login" element={<LogIn />} exact />
               {/* Private/Protected Routes */}
               <Route element={<PrivateRoutes />}>
-                <Route path="/dashboard" element={<Dashboard />} exact />
+                <Route path="/" element={<Dashboard />}  />
                 <Route path="/admin" element={<Admin />} exact />
                 <Route path="/restaurants" element={<Resturants />} exact />
                 <Route path="/plans" element={<Plans />} exact />
@@ -37,6 +38,7 @@ function App() {
                   exact
                 />
                 <Route path="/translations" element={<Translations />} exact />
+                <Route path="/profile" element={<Profile />} exact />
               </Route>
             </Routes>
           </ProvideAuth>
