@@ -15,7 +15,6 @@ const NavItem = ({ NavItemData = {}, setShowSideBar = () => {} }) => {
             isActive && "bg-[#14365D] text-[#ffffff] font-bold"
           } rounded-lg p-3 flex items-center font-semibold space-x-3`}
         >
-          {console.log(isActive)}
           <h1>{text}</h1>
         </div>
       )}

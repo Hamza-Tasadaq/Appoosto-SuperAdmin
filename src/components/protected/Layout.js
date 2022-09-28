@@ -7,7 +7,6 @@ import Sidebar from "./Sidebar";
 const Layout = ({ children }) => {
   const location = useLocation();
   const { pathname } = location;
-  console.log();
 
   const [showSideBar, setShowSideBar] = useState(false);
   return (
