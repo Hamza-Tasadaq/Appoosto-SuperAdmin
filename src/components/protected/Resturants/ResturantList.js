@@ -48,7 +48,7 @@ const ResturantList = () => {
             }}
             classes={`w-full `}
             value={size}
-            dropdownValues={["1", "2", "3", "4", "5"]}
+            dropdownValues={[size - 2, size - 1, size, size + 1, size + 2]}
           />
         </div>
       </div>
