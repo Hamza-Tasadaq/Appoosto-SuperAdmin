@@ -3,22 +3,25 @@ import Button from "../../commons/Button";
 import Switch from "../../commons/Switch";
 import Trash from "../../commons/Trash";
 
-const ResturantItem = () => {
+const ResturantItem = ({ data }) => {
+  console.log(data);
   const [isClicked, setIsClicked] = useState(false);
   return (
-    <div className="bg-[#FFFFFF] rounded-lg px-6 py-4 ">
+    <div className="bg-[#FFFFFF] rounded-lg px-3 py-4 ">
       <div onClick={() => setIsClicked(true)} className="flex">
         <div className="flex-1">
-          <h1 className="font-bold">Username</h1>
+          <h1 className="font-bold">{data.users.username}</h1>
         </div>
         <div className="flex-1">
-          <h2 className="font-medium">restaurant-name</h2>
+          <h2 className="font-medium">{data.name}</h2>
         </div>
         <div className="flex-1">
-          <h2 className="font-medium">mail@mail.com</h2>
+          <h2 className="font-medium">{data.users.email}</h2>
         </div>
         <div className="flex-1">
-          <h2 className="font-medium">23/12/2021 08:4am</h2>
+          <h2 className="font-medium">
+            {new Date(data.createdAt).toDateString()}
+          </h2>
         </div>
         {isClicked && (
           <div className="flex-1 flex items-center justify-end">

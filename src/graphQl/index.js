@@ -17,3 +17,4 @@ export {
   GET_PERMISSIONS_ID,
   GET_ADMINS,
 } from "./queries/UsersQueries";
+export { GET_RESTAURANTS } from "./queries/ResturantQueries";
