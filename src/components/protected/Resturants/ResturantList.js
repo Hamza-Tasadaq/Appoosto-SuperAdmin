@@ -1,8 +1,12 @@
 import { useQuery } from "@apollo/client";
+import { useState } from "react";
 import { ResturantItem, Dropdown } from "../..";
 import { GET_RESTAURANTS } from "../../../graphQl";
+import { Loading } from "../../index";
 
 const ResturantList = () => {
+  const [size, setSize] = useState(10);
+
   const {
     data: restaurantData,
     loading: restaurantLoading,
@@ -10,18 +14,15 @@ const ResturantList = () => {
   } = useQuery(GET_RESTAURANTS, {
     variables: {
       page: 1,
-      size: 10,
+      size: size,
     },
   });
 
   if (restaurantLoading) {
-    return (
-      <div className="flex justify-center">
-        <h1>Loading ...</h1>
-      </div>
-    );
+    return <Loading />;
   }
   if (restaurantError) {
+    console.log(restaurantError);
     return (
       <div className="flex justify-center">
         <h1 className=" text-[#D85C27] font-bold text-2xl">Something Wrong</h1>
@@ -42,9 +43,11 @@ const ResturantList = () => {
         <div className="w-48">
           <h3 className="text-[#727481] text-sm mb-1">Rows per page</h3>
           <Dropdown
-            updateDropDown={() => {}}
+            updateDropDown={(text) => {
+              setSize(+text);
+            }}
             classes={`w-full `}
-            value={"10"}
+            value={size}
             dropdownValues={["1", "2", "3", "4", "5"]}
           />
         </div>

@@ -8,6 +8,7 @@ import {
   GET_PAGINATION_DATA,
   GET_PERMISSIONS_ID,
 } from "../../../graphQl";
+import Loading from "../../commons/Loading";
 
 const AdminsList = () => {
   const { data: paginationData } = useQuery(GET_PAGINATION_DATA, {
@@ -45,7 +46,7 @@ const AdminsList = () => {
   }, [adminsData]);
 
   if (adminsLoading) {
-    return <div className="flex justify-center">loading...</div>;
+    return <Loading />;
   }
 
   if (adminsError) {

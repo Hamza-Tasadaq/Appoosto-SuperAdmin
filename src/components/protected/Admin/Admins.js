@@ -8,7 +8,7 @@ import {
   GET_PERMISSIONS,
   GET_ADMINS,
 } from "../../../graphQl";
-import { Input, Button, ErrorText, SelectDropDown } from "../../index";
+import { Input, Button, ErrorText, SelectDropDown, Loading } from "../../index";
 import AdminsList from "./AdminsList";
 
 const Admins = () => {
@@ -113,7 +113,7 @@ const Admins = () => {
   };
 
   if (permissionsLoading || paginationLoading) {
-    return <div className="flex justify-center">Loading</div>;
+    return <Loading />;
   }
   if (permissionsError || paginationError) {
     return <div>Some thing Wrong</div>;

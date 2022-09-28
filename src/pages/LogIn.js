@@ -24,7 +24,7 @@ const LogIn = () => {
   useLayoutEffect(() => {
     // If user is already logged in then navigate to the dashboard
     if (auth?.user) {
-      navigate("/dashboard");
+      navigate("/");
       return;
     }
     const response = getItem("credentials");
@@ -69,7 +69,7 @@ const LogIn = () => {
             });
           }
           setItem("token", data.login);
-          navigate("/dashboard");
+          navigate("/");
         } else {
           // Login Failure
           toast.error("Wrong Credentials", {

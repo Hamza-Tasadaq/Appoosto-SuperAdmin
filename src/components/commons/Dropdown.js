@@ -26,8 +26,8 @@ const Dropdown = ({
     };
   }, [isClicked]);
 
-  const handleDropDownClick = () => {
-    updateDropDown();
+  const handleDropDownClick = (text) => {
+    updateDropDown(text);
     setIsClicked(!isClicked);
   };
   return (
@@ -47,7 +47,7 @@ const Dropdown = ({
             {dropdownValues?.map((text, index) => (
               <li
                 key={index + 1}
-                onClick={() => handleDropDownClick()}
+                onClick={() => handleDropDownClick(text)}
                 className="py-1 px-3 text-xs duration-300 hover:bg-[#D9D9D9]"
               >
                 {text}

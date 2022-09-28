@@ -11,6 +11,7 @@ export { default as ToastWrapper } from "./commons/ToastWrapper";
 export { default as Datepicker } from "./commons/Datepicker";
 export { default as Pagination } from "./commons/Pagination";
 export { default as SelectDropDown } from "./commons/SelectDropDown";
+export { default as Loading } from "./commons/Loading";
 
 // Protected
 export { default as Layout } from "./protected/Layout";

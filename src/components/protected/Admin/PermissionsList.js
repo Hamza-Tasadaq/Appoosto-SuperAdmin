@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import Pagination from "../../commons/Pagination";
 import PermissionItem from "./PermissionItem";
 import { GET_PERMISSIONS } from "../../../graphQl";
+import Loading from "../../commons/Loading";
 
 const PermissionsList = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -29,7 +30,7 @@ const PermissionsList = () => {
   }, [permissionsData]);
 
   if (permissionsLoading) {
-    return <div className="flex justify-center">loading...</div>;
+    return <Loading />;
   }
 
   return (
