@@ -22,7 +22,6 @@ const ResturantList = () => {
     return <Loading />;
   }
   if (restaurantError) {
-    console.log(restaurantError);
     return (
       <div className="flex justify-center">
         <h1 className=" text-[#D85C27] font-bold text-2xl">Something Wrong</h1>

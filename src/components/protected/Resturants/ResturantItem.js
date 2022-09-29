@@ -4,7 +4,6 @@ import Switch from "../../commons/Switch";
 import Trash from "../../commons/Trash";
 
 const ResturantItem = ({ data }) => {
-  console.log(data);
   const [isClicked, setIsClicked] = useState(false);
   return (
     <div className="bg-[#FFFFFF] rounded-lg px-3 py-4 ">

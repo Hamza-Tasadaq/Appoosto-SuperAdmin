@@ -5,7 +5,7 @@ import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../graphQl";
 import { LoginInput } from "../components";
 import { setItem, getItem } from "../services/LocalStorage";
-import { useAuth } from "../hooks/useAuth";
+import  useAuth  from "../hooks/useAuth";
 
 const LogIn = () => {
   const auth = useAuth();
