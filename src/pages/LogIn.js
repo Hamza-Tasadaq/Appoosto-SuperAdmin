@@ -27,16 +27,16 @@ const LogIn = () => {
       navigate("/");
       return;
     }
-    const response = getItem("credentials");
-    if (response) {
-      const { email, password } = response;
-      setFormData({
-        email,
-        password,
-        rememberMe: true,
-      });
-    } else {
-    }
+    // const response = getItem("credentials");
+    // if (response) {
+    //   const { email, password } = response;
+    //   setFormData({
+    //     email,
+    //     password,
+    //     rememberMe: true,
+    //   });
+    // } else {
+    // }
   }, [auth, navigate]);
 
   const changeHandler = async (e) => {
