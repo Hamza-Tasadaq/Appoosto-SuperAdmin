@@ -49,7 +49,7 @@ export default App;
 function PrivateRoutes({ children, ...rest }) {
   const { loading, data } = useAuth();
   const auth = data?.veiwer;
-  console.log(auth)
+
   if (loading) {
     return <Loader />;
   }
