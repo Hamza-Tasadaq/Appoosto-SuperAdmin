@@ -84,7 +84,10 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="Dine in"> Dine in</label>
+                    <label className="text-[#727481] text-xs" htmlFor="Dine in">
+                      {" "}
+                      Dine in
+                    </label>
                   </div>
                   <div className="flex-1 flex items-center space-x-2">
                     <input
@@ -95,7 +98,10 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="Booking"> Booking</label>
+                    <label className="text-[#727481] text-xs" htmlFor="Booking">
+                      {" "}
+                      Booking
+                    </label>
                   </div>
                   <div className="flex-1 flex items-center space-x-2">
                     <input
@@ -106,7 +112,13 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="Delivery"> Delivery</label>
+                    <label
+                      className="text-[#727481] text-xs"
+                      htmlFor="Delivery"
+                    >
+                      {" "}
+                      Delivery
+                    </label>
                   </div>
                   <div className="flex-1 flex items-center space-x-2">
                     <input
@@ -117,7 +129,13 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="Take away"> Take away</label>
+                    <label
+                      className="text-[#727481] text-xs"
+                      htmlFor="Take away"
+                    >
+                      {" "}
+                      Take away
+                    </label>
                   </div>
                 </div>
               </div>
@@ -136,7 +154,13 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="is hidden"> Is hidden</label>
+                    <label
+                      className="text-[#727481] text-xs"
+                      htmlFor="is hidden"
+                    >
+                      {" "}
+                      Is hidden
+                    </label>
                   </div>
                   <div className="flex-1 flex items-center space-x-2">
                     <input
@@ -147,7 +171,10 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="Is Free"> Is Free</label>
+                    <label className="text-[#727481] text-xs" htmlFor="Is Free">
+                      {" "}
+                      Is Free
+                    </label>
                   </div>
                   <div className="flex-1 flex items-center space-x-2">
                     <input
@@ -158,7 +185,10 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="is default plan">
+                    <label
+                      className="text-[#727481] text-xs"
+                      htmlFor="is default plan"
+                    >
                       {" "}
                       Is default plan
                     </label>
@@ -175,7 +205,13 @@ const PlanItem = () => {
                       onChange={() => {}}
                       checked={true}
                     />
-                    <label className="text-[#727481]   " htmlFor="Is trial"> Is trial</label>
+                    <label
+                      className="text-[#727481] text-xs"
+                      htmlFor="Is trial"
+                    >
+                      {" "}
+                      Is trial
+                    </label>
                   </div>
 
                   <div className="flex-1 flex justify-center">
@@ -216,7 +252,13 @@ const PlanItem = () => {
                     onChange={() => {}}
                     checked={true}
                   />
-                  <label className="text-[#727481]   " htmlFor="waiter app"> Waiter app</label>
+                  <label
+                    className="text-[#727481] text-xs"
+                    htmlFor="waiter app"
+                  >
+                    {" "}
+                    Waiter app
+                  </label>
                 </div>
                 <div className="flex-1 flex items-center space-x-2">
                   <input
@@ -227,7 +269,10 @@ const PlanItem = () => {
                     onChange={() => {}}
                     checked={true}
                   />
-                  <label className="text-[#727481]   " htmlFor="Kitchen app">
+                  <label
+                    className="text-[#727481] text-xs"
+                    htmlFor="Kitchen app"
+                  >
                     {" "}
                     Kitchen app
                   </label>
@@ -241,7 +286,10 @@ const PlanItem = () => {
                     onChange={() => {}}
                     checked={true}
                   />
-                  <label className="text-[#727481]   " htmlFor="POS app"> POS app</label>
+                  <label className="text-[#727481] text-xs" htmlFor="POS app">
+                    {" "}
+                    POS app
+                  </label>
                 </div>
 
                 <div className="flex-1"></div>

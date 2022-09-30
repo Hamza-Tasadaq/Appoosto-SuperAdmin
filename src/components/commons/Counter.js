@@ -5,7 +5,7 @@ const Counter = ({ text }) => {
         {" "}
         -
       </div>
-      <div className="border-y border-[#484A5442] flex justify-center items-center w-32 lg:w-40">
+      <div className="border-y border-[#484A5442] text-xs flex justify-center items-center w-32 lg:w-40">
         {text}
       </div>
       <div className="rounded-r-lg bg-[#14365DCC] cursor-pointer w-10 border text-[#ffffff] font-semibold border-[#484A5442] flex justify-center items-center">
