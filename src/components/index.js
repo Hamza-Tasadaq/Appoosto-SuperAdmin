@@ -12,6 +12,7 @@ export { default as Datepicker } from "./commons/Datepicker";
 export { default as Pagination } from "./commons/Pagination";
 export { default as SelectDropDown } from "./commons/SelectDropDown";
 export { default as Loading } from "./commons/Loading";
+export { default as Counter } from "./commons/Counter";
 
 // Protected
 export { default as Layout } from "./protected/Layout";
@@ -28,6 +29,9 @@ export { default as Permissions } from "./protected/Admin/Permissions";
 // Resturant
 export { default as ResturantList } from "./protected/Resturants/ResturantList";
 export { default as ResturantItem } from "./protected/Resturants/ResturantItem";
+
+// Plans
+export { default as Plan } from "./protected/Plans/Plan";
 
 // Charts
 export { default as PieChart } from "./protected/Charts/PieChart";
