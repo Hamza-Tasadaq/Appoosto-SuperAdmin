@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const Switch = ({ text = "" }) => {
-  const [enabled, setEnabled] = useState(false);
+const Switch = ({ text = "", enable = "" }) => {
+  const [enabled, setEnabled] = useState(enable);
   return (
     <label className="inline-flex flex-row-reverse relative space-x-2 items-center cursor-pointer">
       <input

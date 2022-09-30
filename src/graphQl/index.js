@@ -19,3 +19,4 @@ export {
   GET_ADMINS,
 } from "./queries/UsersQueries";
 export { GET_RESTAURANTS } from "./queries/ResturantQueries";
+export { GET_PLANS } from "./queries/PlansQueries";

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Button, Counter, Input, Switch, Trash } from "../../";
 
-const PlanItem = () => {
+const PlanItem = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [planData, setPlanData] = useState(data);
   return (
     <div
       className={`rounded-lg bg-[#ffffff] border boxShadow p-6 space-y-4  ${
@@ -12,12 +13,14 @@ const PlanItem = () => {
       <div className="flex">
         <div className="flex-1 flex items-center space-x-16">
           <div>
-            <h1 className="text-[#000000] font-semibold text-lg">Free Plan</h1>
+            <h1 className="text-[#000000] font-semibold text-lg">
+              {planData.planType}
+            </h1>
             <p className="text-[#809091] text-xs">3 Members</p>
           </div>
           {isOpen && (
             <div>
-              <Switch text={"Enabled"} />
+              <Switch text={"Enabled"} enable={planData.enabled} />
             </div>
           )}
         </div>
@@ -52,10 +55,18 @@ const PlanItem = () => {
               <div className="flex-1 space-y-4">
                 <div className="flex-1 space-x-4 flex items-center">
                   <div className="flex-1 ">
-                    <Input classes={"w-full"} placeholder="Name" />
+                    <Input
+                      classes={"w-full"}
+                      value={planData.name}
+                      placeholder="Name"
+                    />
                   </div>
                   <div className="flex-1">
-                    <Input classes={"w-full"} placeholder="Description" />
+                    <Input
+                      classes={"w-full"}
+                      value={planData.description}
+                      placeholder="Description"
+                    />
                   </div>
                 </div>
                 <div className="flex-1 flex items-center space-x-4">
@@ -82,7 +93,7 @@ const PlanItem = () => {
                       id="Dine in"
                       name="Dine in"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.dine_in}
                     />
                     <label className="text-[#727481] text-xs" htmlFor="Dine in">
                       {" "}
@@ -96,7 +107,7 @@ const PlanItem = () => {
                       id="Booking"
                       name="Booking"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.booking}
                     />
                     <label className="text-[#727481] text-xs" htmlFor="Booking">
                       {" "}
@@ -110,7 +121,7 @@ const PlanItem = () => {
                       id="Delivery"
                       name="Delivery"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.delivery}
                     />
                     <label
                       className="text-[#727481] text-xs"
@@ -127,7 +138,7 @@ const PlanItem = () => {
                       id="Take away"
                       name="Take away"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.take_away}
                     />
                     <label
                       className="text-[#727481] text-xs"
@@ -152,7 +163,7 @@ const PlanItem = () => {
                       id="is hidden"
                       name="is hidden"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.hidden}
                     />
                     <label
                       className="text-[#727481] text-xs"
@@ -169,7 +180,7 @@ const PlanItem = () => {
                       id="Is Free"
                       name="Is Free"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.is_free}
                     />
                     <label className="text-[#727481] text-xs" htmlFor="Is Free">
                       {" "}
@@ -183,7 +194,7 @@ const PlanItem = () => {
                       id="is default plan"
                       name="is default plan"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.isDefault}
                     />
                     <label
                       className="text-[#727481] text-xs"
@@ -203,7 +214,7 @@ const PlanItem = () => {
                       id="Is trial"
                       name="Is trial"
                       onChange={() => {}}
-                      checked={true}
+                      checked={planData.trial}
                     />
                     <label
                       className="text-[#727481] text-xs"
@@ -234,6 +245,7 @@ const PlanItem = () => {
                   <div className="flex-1 flex justify-centers">
                     <Input
                       classes={"w-10/12 mx-autos"}
+                      value={planData.trial_days}
                       placeholder="Trial days"
                     />
                   </div>
@@ -250,7 +262,7 @@ const PlanItem = () => {
                     id="waiter app"
                     name="waiter app"
                     onChange={() => {}}
-                    checked={true}
+                    checked={planData.waiter_app}
                   />
                   <label
                     className="text-[#727481] text-xs"
@@ -267,7 +279,7 @@ const PlanItem = () => {
                     id="Kitchen app"
                     name="Kitchen app"
                     onChange={() => {}}
-                    checked={true}
+                    checked={planData.kitchen_app}
                   />
                   <label
                     className="text-[#727481] text-xs"
@@ -284,7 +296,7 @@ const PlanItem = () => {
                     id="POS app"
                     name="POS app"
                     onChange={() => {}}
-                    checked={true}
+                    checked={planData.pos_app}
                   />
                   <label className="text-[#727481] text-xs" htmlFor="POS app">
                     {" "}
