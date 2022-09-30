@@ -4,6 +4,7 @@ import { Button, Counter, Input, Switch, Trash } from "../../";
 const PlanItem = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [planData, setPlanData] = useState(data);
+
   return (
     <div
       className={`rounded-lg bg-[#ffffff] border boxShadow p-6 space-y-4  ${
@@ -16,7 +17,7 @@ const PlanItem = ({ data }) => {
             <h1 className="text-[#000000] font-semibold text-lg">
               {planData.planType}
             </h1>
-            <p className="text-[#809091] text-xs">3 Members</p>
+            <p className="text-[#809091] text-xs">{planData.users} Members</p>
           </div>
           {isOpen && (
             <div>
@@ -31,7 +32,11 @@ const PlanItem = ({ data }) => {
           ) : (
             <div className="flex items-center space-x-16">
               <img src="./assets/icons/close-eye.svg" alt="close-eye" />
-              <img src="./assets/icons/free.svg" alt="free" />
+              <div className="w-7 h-7">
+                {planData.is_free && (
+                  <img src="./assets/icons/free.svg" alt="free" />
+                )}
+              </div>
             </div>
           )}
 
