@@ -16,4 +16,8 @@ function getItem(key) {
   return item;
 }
 
-export { setItem, getItem };
+function clearItem(key) {
+  localStorage.removeItem(key);
+}
+
+export { setItem, getItem, clearItem };

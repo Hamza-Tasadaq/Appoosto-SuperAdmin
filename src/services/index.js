@@ -1,3 +1,2 @@
 // Localstorage
-export { setItem } from "./LocalStorage";
-export { getItem } from "./LocalStorage";
+export { setItem, getItem, clearItem } from "./LocalStorage";

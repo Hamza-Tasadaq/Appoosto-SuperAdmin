@@ -1,7 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { RiCloseCircleLine } from "react-icons/ri";
+import { FiLogOut } from "react-icons/fi";
 import Navbar from "./Navbar";
+import { clearItem } from "../../services";
 
 const Sidebar = ({ setShowSideBar = () => {}, showSideBar = "" }) => {
+  const navigate = useNavigate();
   return (
     <div
       className={`${
@@ -23,6 +27,19 @@ const Sidebar = ({ setShowSideBar = () => {}, showSideBar = "" }) => {
       </div>
       <div className="my-8 lg:my-0">
         <Navbar />
+      </div>
+
+      <div
+        onClick={() => {
+          clearItem("token");
+          navigate("/login");
+        }}
+        className="absolute bottom-8 left-1/2 cursor-pointer -translate-x-1/2 flex items-center space-x-4"
+      >
+        <FiLogOut
+          style={{ color: "#D85C27", fontSize: "1.5rem", fontWeight: "bold" }}
+        />
+        <h2 className="text-[#D85C27] font-semibold text-lg">Logout</h2>
       </div>
     </div>
   );
