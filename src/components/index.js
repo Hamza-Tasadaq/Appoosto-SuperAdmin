@@ -33,6 +33,11 @@ export { default as ResturantItem } from "./protected/Resturants/ResturantItem";
 // Plans
 export { default as Plan } from "./protected/Plans/Plan";
 
+// Subscription
+export { default as Subscription } from "./protected/Subscriptions/Subscription";
+export { default as SubscriptionList } from "./protected/Subscriptions/SubscriptionList";
+export { default as SubscriptionItem } from "./protected/Subscriptions/SubscriptionItem";
+
 // Charts
 export { default as PieChart } from "./protected/Charts/PieChart";
 export { default as BarChart } from "./protected/Charts/BarChart";

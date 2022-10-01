@@ -78,6 +78,8 @@ const Admins = () => {
           ],
           awaitRefetchQueries: true,
         });
+
+        console.log(data);
         if (data.createMember === "success") {
           toast.success("User Added", {
             position: "top-right",
