@@ -38,6 +38,9 @@ export { default as Subscription } from "./protected/Subscriptions/Subscription"
 export { default as SubscriptionList } from "./protected/Subscriptions/SubscriptionList";
 export { default as SubscriptionItem } from "./protected/Subscriptions/SubscriptionItem";
 
+// Translations
+export { default as Language } from "./protected/Translations/Language";
+
 // Charts
 export { default as PieChart } from "./protected/Charts/PieChart";
 export { default as BarChart } from "./protected/Charts/BarChart";
