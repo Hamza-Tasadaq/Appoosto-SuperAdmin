@@ -1,11 +1,10 @@
-import { useMutation } from "@apollo/client";
-import { ReactCountryDropdown } from "react-country-dropdown";
-import { Input, Button, Switch } from "../../";
-import LanguagesList from "./LanguagesList";
-
-import "react-country-dropdown/dist/index.css";
-import { CREATE_LANGUAGE } from "../../../graphQl";
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import LanguagesList from "./LanguagesList";
+import { Input, Button, Switch, SelectDropDown } from "../../";
+import { CREATE_LANGUAGE } from "../../../graphQl";
+import codes from "iso-language-codes";
+import { useEffect } from "react";
 
 const Language = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +13,16 @@ const Language = () => {
     active: "",
   });
   const [showErrors, setShowErrors] = useState(false);
+
+  const [isoCodes, setIsoCodes] = useState([]);
+
+  useEffect(() => {
+    setIsoCodes(
+      codes.map((data) => {
+        return { name: `${data.name} (${data.iso639_1}) `, id: data.iso639_1 };
+      })
+    );
+  }, [codes]);
 
   const [createLanguage, { loading: languageLoading }] =
     useMutation(CREATE_LANGUAGE);
@@ -40,6 +49,7 @@ const Language = () => {
           <div className="flex-1 space-y-2 mx-1.5 my-1.5">
             <h3 className="text-[#727481] text-sm">language name</h3>
             <Input
+              placeholder="Insert Language Name"
               value={formData.name}
               onChange={(e) => {
                 setFormData({
@@ -54,17 +64,16 @@ const Language = () => {
           </div>{" "}
           <div className="flex-1 space-y-2 mx-1.5 my-1.5">
             <h3 className="text-[#727481] text-sm">Code (ISO 639-1)</h3>
-            <Input
-              value={formData.iso_code}
-              onChange={(e) => {
+
+            <SelectDropDown
+              value="Select Code (ISO 639-1)"
+              dropdownValues={isoCodes}
+              updateDropDown={(id) => {
                 setFormData({
                   ...formData,
-                  iso_code: e.target.value,
+                  iso_code: id,
                 });
               }}
-              classes={`w-full ${
-                showErrors && formData.iso_code === "" && " border-[#EF5350] "
-              }`}
             />
           </div>
           <div className="flex-1 space-y-2 mx-1.5 my-1.5">
@@ -89,6 +98,7 @@ const Language = () => {
           text="Save"
         />
       </form>
+      <LanguagesList />
       <LanguagesList />
     </div>
   );

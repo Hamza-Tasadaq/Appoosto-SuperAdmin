@@ -30,7 +30,7 @@ const SelectDropDown = ({
       </div>
       {isClicked && (
         <div className="bg-[#ffffff] border border-[#d9d9d9] z-50 drop-shadow-xl absolute w-full">
-          <ul>
+          <ul className="max-h-80 overflow-auto noScrollBar">
             {dropdownValues?.map(({ name, id }, index) => (
               <li
                 key={index + 1}
