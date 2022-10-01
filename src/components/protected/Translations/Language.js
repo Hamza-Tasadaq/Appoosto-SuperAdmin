@@ -22,7 +22,7 @@ const Language = () => {
         return { name: `${data.name} (${data.iso639_1}) `, id: data.iso639_1 };
       })
     );
-  }, [codes]);
+  }, []);
 
   const [createLanguage, { loading: languageLoading }] =
     useMutation(CREATE_LANGUAGE);
