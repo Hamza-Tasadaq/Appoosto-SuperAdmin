@@ -13,7 +13,6 @@ const Language = () => {
     active: false,
   });
   const [showErrors, setShowErrors] = useState(false);
-
   const [isoCodes, setIsoCodes] = useState([]);
 
   useEffect(() => {
@@ -38,8 +37,6 @@ const Language = () => {
             active: formData.active,
           },
         });
-
-        console.log(data);
         if (data.createLanguage === "success") {
           toast.success("Language Added", {
             position: "top-right",

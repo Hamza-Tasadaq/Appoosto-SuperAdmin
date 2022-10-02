@@ -22,3 +22,4 @@ export {
 export { GET_RESTAURANTS } from "./queries/ResturantQueries";
 export { GET_PLANS } from "./queries/PlansQueries";
 export { GET_SUBSCRIPTIONS } from "./queries/SubscriptionQueries";
+export { GET_LANGUAGES } from "./queries/TransaltionQueries";

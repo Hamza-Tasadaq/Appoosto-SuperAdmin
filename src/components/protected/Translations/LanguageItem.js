@@ -2,9 +2,12 @@ import { useState } from "react";
 import Button from "../../commons/Button";
 import Input from "../../commons/Input";
 import Switch from "../../commons/Switch";
+import Trash from "../../commons/Trash";
 
-const LanguageItem = () => {
+const LanguageItem = ({ data }) => {
+  const [languageData, setLanguageData] = useState(data);
   const [isOpen, setIsOpen] = useState(false);
+  console.log(languageData);
   return (
     <div
       className={` bg-[#ffffff] space-y-4 rounded-lg p-4 ${
@@ -13,8 +16,8 @@ const LanguageItem = () => {
     >
       <div className="flex items-center">
         <div className="flex-1 flex justify-between items-center">
-          <h1 className="font-bold">Italian</h1>
-          <h2 className="font-semibold">It</h2>
+          <h1 className="font-bold">{languageData.name}</h1>
+          <h2 className="font-semibold">{languageData.iso_code}</h2>
           <div>
             {!isOpen && (
               <div className="bg-[#3A86FE] border border-[#D9D9D9] text-[#ffffff] rounded-full w-28 text-center">
@@ -24,10 +27,13 @@ const LanguageItem = () => {
           </div>
         </div>
 
-        <div className="flex-1 flex justify-end">
+        <div className="flex-1 flex justify-end ">
           {isOpen ? (
-            <div className="bg-[#3A86FE] border border-[#D9D9D9] text-[#ffffff] rounded-full w-28 text-center">
-              <p className="font-semibold">Active</p>
+            <div className="flex items-center space-x-4">
+              <div>
+                <Switch text="active" enable={languageData.active} />
+              </div>
+              <Trash />
             </div>
           ) : (
             <Button
@@ -44,10 +50,24 @@ const LanguageItem = () => {
       {isOpen && (
         <div className="flex items-center">
           <div className="flex flex-1 items-center space-x-4">
-            <Input value="Italian" />
-            <Input value="It" classes={"w-fit"} />
-
-            <Switch text="active" />
+            <Input
+              value={languageData.name}
+              onChange={(e) => {
+                setLanguageData({
+                  ...languageData,
+                  name: e.target.value,
+                });
+              }}
+            />
+            <Input
+              value={languageData.iso_code}
+              onChange={(e) => {
+                setLanguageData({
+                  ...languageData,
+                  iso_code: e.target.value,
+                });
+              }}
+            />
           </div>
           <div className="flex-1 space-x-4 flex items-center justify-end">
             <Button
