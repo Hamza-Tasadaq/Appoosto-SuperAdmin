@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 import LanguagesList from "./LanguagesList";
 import { Input, Button, Switch, SelectDropDown } from "../../";
 import { CREATE_LANGUAGE } from "../../../graphQl";
 import codes from "iso-language-codes";
-import { useEffect } from "react";
 
 const Language = () => {
   const [formData, setFormData] = useState({
     name: "",
     iso_code: "",
-    active: "",
+    active: false,
   });
   const [showErrors, setShowErrors] = useState(false);
 
@@ -26,18 +26,45 @@ const Language = () => {
 
   const [createLanguage, { loading: languageLoading }] =
     useMutation(CREATE_LANGUAGE);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    setShowErrors(true);
     try {
-      console.log(formData);
-      if (formData.name && formData.iso_code && formData.active) {
-        console.log("FIlled");
+      if (formData.name && formData.iso_code) {
+        const { data } = await createLanguage({
+          variables: {
+            name: formData.name,
+            iso_code: formData.iso_code,
+            active: formData.active,
+          },
+        });
+
+        console.log(data);
+        if (data.createLanguage === "success") {
+          toast.success("Language Added", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        }
       } else {
-        console.log("Empty");
+        setShowErrors(true);
       }
-    } catch (err) {}
+    } catch (err) {
+      toast.error("Some Thing Wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
   return (
     <div className="space-y-4">
@@ -98,7 +125,6 @@ const Language = () => {
           text="Save"
         />
       </form>
-      <LanguagesList />
       <LanguagesList />
     </div>
   );

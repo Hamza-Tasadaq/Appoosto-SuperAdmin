@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
     <div className="bg-[#EEF5FC] min-h-screen">
       <Header setShowSideBar={setShowSideBar} showSideBar={showSideBar} />
       <Container>
-        <div className="flex px-4 pt-24 relative overflow-x-hidden">
+        <div className="flex px-4 pt-24 relative overflow-x-hidden min-h-screen">
           {!pathname.includes("profile") && (
             <Sidebar
               setShowSideBar={setShowSideBar}

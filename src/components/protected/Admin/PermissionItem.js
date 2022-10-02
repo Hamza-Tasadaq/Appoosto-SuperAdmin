@@ -49,6 +49,8 @@ const PermissionItem = ({ permissionData }) => {
         refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
         awaitRefetchQueries: true,
       });
+
+      console.log({ data });
       if (data?.editPermission === "Success") {
         // Permission Edit Success
         toast.success("Permission Edited", {
@@ -62,6 +64,7 @@ const PermissionItem = ({ permissionData }) => {
         });
       }
     } catch (err) {
+      console.log(err);
       // Permission Deleted Failure
       toast.error("Some Thing Wrong", {
         position: "top-right",
