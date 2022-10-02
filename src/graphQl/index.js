@@ -9,7 +9,11 @@ export {
 } from "./mutations/PermissionsMutation";
 export { CREATE_MEMBER } from "./mutations/UsersMutation";
 export { CREATE_PLAN } from "./mutations/PlansMutation";
-export { CREATE_LANGUAGE } from "./mutations/TranslationsMutation";
+export {
+  CREATE_LANGUAGE,
+  DELETE_LANGUAGE,
+  EDIT_LANGUAGE,
+} from "./mutations/TranslationsMutation";
 
 // Queries
 export { LOGGED_IN_USER } from "./queries/LoginQueries";

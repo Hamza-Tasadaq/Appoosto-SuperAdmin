@@ -7,7 +7,7 @@ import Trash from "../../commons/Trash";
 const LanguageItem = ({ data }) => {
   const [languageData, setLanguageData] = useState(data);
   const [isOpen, setIsOpen] = useState(false);
-  console.log(languageData);
+  
   return (
     <div
       className={` bg-[#ffffff] space-y-4 rounded-lg p-4 ${

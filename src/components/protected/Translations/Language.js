@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
 import LanguagesList from "./LanguagesList";
 import { Input, Button, Switch, SelectDropDown } from "../../";
-import { CREATE_LANGUAGE } from "../../../graphQl";
+import { CREATE_LANGUAGE, GET_LANGUAGES } from "../../../graphQl";
 import codes from "iso-language-codes";
 
 const Language = () => {
@@ -36,6 +36,7 @@ const Language = () => {
             iso_code: formData.iso_code,
             active: formData.active,
           },
+          refetchQueries: [{ query: GET_LANGUAGES }, "getLanguage"],
         });
         if (data.createLanguage === "success") {
           toast.success("Language Added", {
