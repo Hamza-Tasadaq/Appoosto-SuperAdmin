@@ -28,7 +28,6 @@ const Language = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(typeof formData.active);
     try {
       if (formData.name && formData.iso_code) {
         const { data } = await createLanguage({

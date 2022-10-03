@@ -19,7 +19,7 @@ const LanguagesList = () => {
       size: 10,
     },
   });
-  console.log(languageData);
+
   // Update State once the response is received
   useEffect(() => {
     if (languageData) {
@@ -41,7 +41,10 @@ const LanguagesList = () => {
   }
   return (
     <div className="bg-[#FFFFFF] rounded-lg p-6">
-      hhhj
+      <div className="flex items-center justify-between">
+        <h1>Languages</h1>
+        <div></div>
+      </div>
       <div className="bg-[#EFF3F7] rounded-lg p-4 space-y-2">
         {languageData?.getLanguage?.responscedata?.languages.map((data) => (
           <LanguageItem key={data.id} data={data} />

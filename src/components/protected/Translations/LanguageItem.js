@@ -5,15 +5,59 @@ import Button from "../../commons/Button";
 import Input from "../../commons/Input";
 import Switch from "../../commons/Switch";
 import Trash from "../../commons/Trash";
-import { DELETE_LANGUAGE, GET_LANGUAGES } from "../../../graphQl";
+import {
+  DELETE_LANGUAGE,
+  GET_LANGUAGES,
+  EDIT_LANGUAGE,
+} from "../../../graphQl";
 
 const LanguageItem = ({ data }) => {
-  console.log(typeof data.active);
+  console.log(data);
   const [languageData, setLanguageData] = useState(data);
   const [isOpen, setIsOpen] = useState(false);
 
   const [deleteLanguage, { loading: deleteLoading }] =
     useMutation(DELETE_LANGUAGE);
+
+  const [editLanguage, { loading: editLoading }] = useMutation(EDIT_LANGUAGE);
+
+  const handleSave = async () => {
+    console.log("CLick");
+    try {
+      const { data } = await editLanguage({
+        variables: {
+          ...languageData,
+        },
+        refetchQueries: [{ query: GET_LANGUAGES }, "getLanguage"],
+        awaitRefetchQueries: true,
+      });
+      console.log(data);
+
+      if (data?.deleteLanguage === "Success") {
+        // Permission Deleted Success
+        toast.success("Language Deleted", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (err) {
+      // Permission Deleted Failure
+      toast.error("Some Thing Wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
 
   const handleDelete = async (id) => {
     try {
@@ -75,7 +119,16 @@ const LanguageItem = ({ data }) => {
           {isOpen ? (
             <div className="flex items-center space-x-4">
               <div>
-                <Switch text="active" enable={languageData.active} />
+                <Switch
+                  text="active"
+                  enable={languageData.active}
+                  toggle={() => {
+                    setLanguageData({
+                      ...languageData,
+                      active: !languageData.active,
+                    });
+                  }}
+                />
               </div>
               <div
                 onClick={() => {
@@ -129,7 +182,16 @@ const LanguageItem = ({ data }) => {
               }}
               classes={"text-[#ffffff] bg-[#14365D]"}
             />
-            <Button text="Save" classes={"text-[#ffffff] bg-[#009959]"} />
+            <Button
+              onClick={() => {
+                handleSave();
+              }}
+              disabled={editLoading}
+              text="Save"
+              classes={`text-[#ffffff] bg-[#009959] ${
+                editLoading && "opacity-50"
+              }`}
+            />
           </div>
         </div>
       )}
