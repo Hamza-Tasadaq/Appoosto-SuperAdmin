@@ -21,6 +21,7 @@ const PermissionItem = ({ permissionData }) => {
     useMutation(EDIT_PERMISSION);
 
   const ref = useRef();
+  
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
@@ -42,12 +43,13 @@ const PermissionItem = ({ permissionData }) => {
 
   const handleSave = async () => {
     try {
+      console.log(permissions);
       const { data } = await editPermission({
         variables: {
           ...permissions,
         },
-        refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
-        awaitRefetchQueries: true,
+        // refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+        // awaitRefetchQueries: true,
       });
 
       console.log({ data });
