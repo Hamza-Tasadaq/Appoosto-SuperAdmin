@@ -1,13 +1,57 @@
 import { useState } from "react";
+import { useMutation } from "@apollo/client";
+import { toast } from "react-toastify";
 import Button from "../../commons/Button";
 import Input from "../../commons/Input";
 import Switch from "../../commons/Switch";
 import Trash from "../../commons/Trash";
+import { DELETE_LANGUAGE, GET_LANGUAGES } from "../../../graphQl";
 
 const LanguageItem = ({ data }) => {
+  console.log(typeof data.active);
   const [languageData, setLanguageData] = useState(data);
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  const [deleteLanguage, { loading: deleteLoading }] =
+    useMutation(DELETE_LANGUAGE);
+
+  const handleDelete = async (id) => {
+    try {
+      const { data } = await deleteLanguage({
+        variables: {
+          id,
+        },
+        refetchQueries: [{ query: GET_LANGUAGES }, "getLanguage"],
+        awaitRefetchQueries: true,
+      });
+      console.log(data);
+
+      if (data?.deleteLanguage === "Success") {
+        // Permission Deleted Success
+        toast.success("Language Deleted", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (err) {
+      // Permission Deleted Failure
+      toast.error("Some Thing Wrong", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
   return (
     <div
       className={` bg-[#ffffff] space-y-4 rounded-lg p-4 ${
@@ -33,7 +77,15 @@ const LanguageItem = ({ data }) => {
               <div>
                 <Switch text="active" enable={languageData.active} />
               </div>
-              <Trash />
+              <div
+                onClick={() => {
+                  if (!deleteLoading) {
+                    handleDelete(languageData.id);
+                  }
+                }}
+              >
+                <Trash classes={deleteLoading && "opacity-50"} />
+              </div>
             </div>
           ) : (
             <Button

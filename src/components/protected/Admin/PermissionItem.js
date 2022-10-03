@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
 import Button from "../../commons/Button";
 import Dropdown from "../../commons/Dropdown";
 import Trash from "../../commons/Trash";
@@ -10,18 +9,15 @@ import {
   EDIT_PERMISSION,
   GET_PERMISSIONS,
 } from "../../../graphQl";
-import { deletePerm } from "../../../app/slices/PermissionsSlice";
 
 const PermissionItem = ({ permissionData }) => {
-  const dispatch = useDispatch();
-
   const [deletePermission, { loading: deleteLoading }] =
     useMutation(DELETE_PERMISSION);
   const [editPermission, { loading: editLoading }] =
     useMutation(EDIT_PERMISSION);
 
   const ref = useRef();
-  
+
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
@@ -43,16 +39,14 @@ const PermissionItem = ({ permissionData }) => {
 
   const handleSave = async () => {
     try {
-      console.log(permissions);
       const { data } = await editPermission({
         variables: {
           ...permissions,
         },
-        // refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
-        // awaitRefetchQueries: true,
+        refetchQueries: [{ query: GET_PERMISSIONS }, "getPermissions"],
+        awaitRefetchQueries: true,
       });
 
-      console.log({ data });
       if (data?.editPermission === "Success") {
         // Permission Edit Success
         toast.success("Permission Edited", {
@@ -91,8 +85,6 @@ const PermissionItem = ({ permissionData }) => {
       });
 
       if (data?.deletePermission === "Success") {
-        // Delete Permission from the redux Store
-        dispatch(deletePerm({ id }));
         // Permission Deleted Success
         toast.success("Permission Deleted", {
           position: "top-right",
@@ -363,7 +355,9 @@ const PermissionItem = ({ permissionData }) => {
                   })
                 }
                 value={permissions.create_permission ? "Yes" : "No"}
-                dropdownValues={[permissions.create_permission ? " No " : "Yes"]}
+                dropdownValues={[
+                  permissions.create_permission ? " No " : "Yes",
+                ]}
               />
             </div>
             <div className="flex-1 ">
@@ -387,7 +381,9 @@ const PermissionItem = ({ permissionData }) => {
                   })
                 }
                 value={permissions.delete_permission ? "Yes" : "No"}
-                dropdownValues={[permissions.delete_permission ? " No " : "Yes"]}
+                dropdownValues={[
+                  permissions.delete_permission ? " No " : "Yes",
+                ]}
               />
             </div>
           </div>

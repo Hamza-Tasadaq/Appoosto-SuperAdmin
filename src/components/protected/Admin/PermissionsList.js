@@ -33,17 +33,20 @@ const PermissionsList = () => {
     return <Loading />;
   }
 
+  if (permissionsError) {
+    return (
+      <div className="flex justify-center">
+        <h1 className=" text-[#D85C27] font-bold text-2xl">Not Authorized</h1>
+      </div>
+    );
+  }
+
   return (
     <>
-      {permissionsError && (
-        <div className="flex justify-center">
-          <h1 className=" text-[#D85C27] font-bold text-2xl">Not Authorized</h1>
-        </div>
-      )}
-      {permissionsData.getPermission && (
+      {permissionsData?.getPermission && (
         <div>
           <div className="space-y-2">
-            {permissionsData.getPermission.responscedata?.permissions.map(
+            {permissionsData?.getPermission?.responscedata?.permissions.map(
               (permissionData) => (
                 <PermissionItem
                   key={permissionData.id}
