@@ -337,6 +337,60 @@ const PermissionItem = ({ permissionData }) => {
           </div>
           <div className="flex items-center bg-[#ffffff] px-3 py-2 rounded-lg space-x-4">
             <div className="flex-1">
+              <h1 className="font-bold">Permissions</h1>
+            </div>
+            <div className="flex-1 ">
+              <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    view_permissions: !permissions.view_permissions,
+                  })
+                }
+                value={permissions.view_permissions ? "Yes" : "No"}
+                dropdownValues={[permissions.view_permissions ? " No " : "Yes"]}
+              />
+            </div>
+            <div className="flex-1 ">
+              {" "}
+              <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    create_permission: !permissions.create_permission,
+                  })
+                }
+                value={permissions.create_permission ? "Yes" : "No"}
+                dropdownValues={[permissions.create_permission ? " No " : "Yes"]}
+              />
+            </div>
+            <div className="flex-1 ">
+              <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    edit_permission: !permissions.edit_permission,
+                  })
+                }
+                value={permissions.edit_permission ? "Yes" : "No"}
+                dropdownValues={[permissions.edit_permission ? " No " : "Yes"]}
+              />
+            </div>
+            <div className="flex-1 ">
+              <Dropdown
+                updateDropDown={() =>
+                  setPermissions({
+                    ...permissions,
+                    delete_permission: !permissions.delete_permission,
+                  })
+                }
+                value={permissions.delete_permission ? "Yes" : "No"}
+                dropdownValues={[permissions.delete_permission ? " No " : "Yes"]}
+              />
+            </div>
+          </div>
+          <div className="flex items-center bg-[#ffffff] px-3 py-2 rounded-lg space-x-4">
+            <div className="flex-1">
               <h1 className="font-bold">Languages</h1>
             </div>
             <div className="flex-1 ">

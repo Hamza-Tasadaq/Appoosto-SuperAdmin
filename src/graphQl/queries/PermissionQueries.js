@@ -14,7 +14,7 @@ export const GET_PERMISSIONS = gql`
           name
           view_permissions
           create_permission
-          add_permission
+                  edit_permission
           delete_permission
           view_admins
           add_admin
