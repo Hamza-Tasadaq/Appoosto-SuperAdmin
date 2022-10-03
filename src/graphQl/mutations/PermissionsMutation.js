@@ -23,7 +23,7 @@ export const EDIT_PERMISSION = gql`
     $name: String!
     $view_permissions: Boolean
     $create_permission: Boolean
-    $add_permission: Boolean
+    $edit_permission: Boolean
     $delete_permission: Boolean
     $view_admins: Boolean
     $edit_admin: Boolean
@@ -58,7 +58,7 @@ export const EDIT_PERMISSION = gql`
         id: $id
         view_permissions: $view_permissions
         create_permission: $create_permission
-        add_permission: $add_permission
+        edit_permission: $edit_permission
         delete_permission: $delete_permission
         view_admins: $view_admins
         edit_admin: $edit_admin
