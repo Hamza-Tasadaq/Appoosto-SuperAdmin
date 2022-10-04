@@ -16,6 +16,7 @@ export {
 } from "./mutations/TranslationsMutation";
 
 // Queries
+export { DASHBOARD_DATA } from "./queries/DashboardQueries";
 export { LOGGED_IN_USER } from "./queries/LoginQueries";
 export { GET_PERMISSIONS } from "./queries/PermissionQueries";
 export {

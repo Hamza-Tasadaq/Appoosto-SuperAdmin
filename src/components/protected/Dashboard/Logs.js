@@ -1,11 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useQuery } from "@apollo/client";
 import { CalendarIcon } from "../../../icons";
 import Dropdown from "../../commons/Dropdown";
 import DatePicker from "../../commons/Datepicker";
+import { Loading } from "../../index";
 import Heading from "./Heading";
 import { BarChart, PieChart } from "../../index";
+import { DASHBOARD_DATA } from "../../../graphQl";
 
 const Logs = () => {
+  const {
+    data: dashboardData,
+    loading: dashboardLoading,
+    error: dashboardError,
+  } = useQuery(DASHBOARD_DATA);
+
+  const [topLoactions, setTopLocations] = useState([]);
+  const [topBrowsers, setTopBrowsers] = useState([]);
+  const [topPlatForms, setTopPlatforms] = useState([]);
+
+  useEffect(() => {
+    if (dashboardData) {
+      const { topBrowsers, topLocations, topPlatForms } =
+        dashboardData?.dashBoardQuery.responscedata;
+
+      setTopLocations(topLocations);
+      setTopBrowsers(topBrowsers);
+      setTopPlatforms(topPlatForms);
+    }
+  }, [dashboardData]);
+
+  if (dashboardLoading) {
+    return <Loading />;
+  }
+
+  if (dashboardError) {
+    return (
+      <div className="flex justify-center">
+        <h1 className=" text-[#D85C27] font-bold text-2xl">Not Authorized</h1>
+      </div>
+    );
+  }
   return (
     <div className="bg-[#ffffff] rounded-lg px-5 py-6 space-y-4">
       <div className="flex items-start">
@@ -105,47 +140,21 @@ const Logs = () => {
 
       <div className="bg-[#EFF3F7] p-4 rounded-lg">
         <Heading text="Top locations" />
-        <div className="flex space-x-5 lg:space-x-8">
-          <div className="mt-6 lg:mt-10 space-y-2">
-            <div className="flex items-center">
-              <h3 className="w-36 lg:w-40 text-sm lg:text-base text-[#000000]">
-                Italy
-              </h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
-            <div className="flex items-center">
-              <h3 className="w-36 lg:w-40 text-sm lg:text-base text-[#000000]">
-                Spain
-              </h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
-            <div className="flex items-center">
-              <h3 className="w-36 lg:w-40 text-sm lg:text-base text-[#000000]">
-                Germany
-              </h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>{" "}
-            <div className="flex items-center">
-              <h3 className="w-36 lg:w-40 text-sm lg:text-base text-[#000000]">
-                France
-              </h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
+        <div className="flex space-x-5 lg:space-x-8 mt-5">
+          <div className="mt-6  space-y-2">
+            {topLoactions?.map(({ name, count }, index) => (
+              <div key={index} className="flex items-center">
+                <h3 className="w-36 lg:w-40 text-sm lg:text-base text-[#000000]">
+                  {name}
+                </h3>
+                <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                  {count}
+                </h1>
+              </div>
+            ))}
           </div>
           <div className="flex-1">
-            <BarChart />
+            <BarChart chartData={topLoactions} />
           </div>
         </div>
       </div>
@@ -155,57 +164,31 @@ const Logs = () => {
           <Heading text="Top Platforms" />
 
           <div className=" space-y-3">
-            <div className="flex justify-between items-center">
-              <h3 className=" text-sm lg:text-base text-[#000000]">Chrome</h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
-            <div className="flex justify-between items-center">
-              <h3 className=" text-sm lg:text-base text-[#000000]">Edge</h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
-            <div className="flex justify-between items-center">
-              <h3 className=" text-sm lg:text-base text-[#000000]">Safari</h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
+            {topPlatForms.map(({ name, count }, index) => (
+              <div key={index} className="flex justify-between items-center">
+                <h3 className=" text-sm lg:text-base text-[#000000]">{name}</h3>
+                <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                  {count}
+                </h1>
+              </div>
+            ))}
           </div>
-          <PieChart />
+          <PieChart chartData={topPlatForms} />
         </div>
         <div className="bg-[#EFF3F7] space-y-4 flex-1 p-4 rounded-lg">
           <Heading text=" Top Browswers" />
 
           <div className=" space-y-3">
-            <div className="flex justify-between items-center">
-              <h3 className=" text-sm lg:text-base text-[#000000]">Windows</h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
-            <div className="flex justify-between items-center">
-              <h3 className=" text-sm lg:text-base text-[#000000]">Ios</h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
-            <div className="flex justify-between items-center">
-              <h3 className=" text-sm lg:text-base text-[#000000]">Android</h3>
-              <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
-                {" "}
-                125
-              </h1>
-            </div>
+            {topBrowsers.map(({ name, count }, index) => (
+              <div key={index} className="flex justify-between items-center">
+                <h3 className=" text-sm lg:text-base text-[#000000]">{name}</h3>
+                <h1 className="bg-[#14355E] rounded-full text-center py-[2px] px-6 lg:px-8 text-[#ffffff] font-medium lg:font-semibold text-sm lg:text-base">
+                  {count}
+                </h1>
+              </div>
+            ))}
           </div>
-          <PieChart />
+          <PieChart chartData={topBrowsers} />
         </div>
       </div>
     </div>

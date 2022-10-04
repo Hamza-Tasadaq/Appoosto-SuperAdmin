@@ -7,6 +7,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useState } from "react";
+import { useEffect } from "react";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -23,9 +25,10 @@ export const options = {
   plugins: {
     legend: {
       position: "top",
+      display: false,
     },
     title: {
-      display: true,
+      display: false,
       text: "Chart.js Bar Chart",
     },
   },
@@ -33,27 +36,36 @@ export const options = {
 
 const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Dataset 1",
-      data: labels.map(() => Math.random() * (100 - -80) + -80),
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-      borderColor: "rgba(255, 99, 132, 1)",
-      barThickness: 40,
-    },
-    {
-      label: "Dataset 2",
-      data: labels.map(() => Math.random() * (100 - -80) + -80),
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-      borderColor: "rgba(53, 162, 235, 1)",
-      barThickness: 40,
-    },
-  ],
-};
+// export const data =
 
-const BarChart = () => {
+const BarChart = ({ chartData }) => {
+  const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    console.log({ chartData });
+
+    if (chartData) {
+      setData({
+        labels: chartData.map(({ name }) => name),
+        datasets: [
+          {
+            label: "Dataset 1",
+            data: chartData.map(({ count }) => count),
+            backgroundColor: "rgba(255, 99, 132, 0.5)",
+            borderColor: "rgba(255, 99, 132, 1)",
+          },
+        ],
+      });
+      setLoading(false);
+    }
+  }, [chartData]);
+
+  console.log(data.labels);
+
+  if (loading) {
+    return <div>Loading ... </div>;
+  }
+
   return <Bar options={options} data={data} />;
 };
 
