@@ -24,17 +24,13 @@ export const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top",
       display: false,
     },
     title: {
       display: false,
-      text: "Chart.js Bar Chart",
     },
   },
 };
-
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
 
 // export const data =
 
