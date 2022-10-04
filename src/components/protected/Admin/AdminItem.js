@@ -29,10 +29,10 @@ const AdminItem = ({ adminData }) => {
         className="font-medium  flex items-center space-x-4"
       >
         <div className="flex-1">
-          <h1 className="font-semibold w-full">{admins.username}</h1>
+          <h1 className="font-semibold w-full">{admins?.username}</h1>
         </div>
         <div className="flex-1">
-          <h2>{admins.email}</h2>
+          <h2>{admins?.email}</h2>
         </div>
         <div className="flex-1">
           {isClicked ? (
@@ -51,13 +51,13 @@ const AdminItem = ({ adminData }) => {
               //   formData.permissionId === "" &&
               //   " border-[#D85C27]"
               // }`}
-              value={admins.permission.name}
+              value={admins?.permission?.name}
               dropdownValues={permissionsData?.getPermission?.responscedata?.permissions?.filter(
                 (permissionItem) => permissionItem
               )}
             />
           ) : (
-            <h2>{admins.permission.name}</h2>
+            <h2>{admins?.permission?.name}</h2>
           )}
         </div>
         {isClicked && (
