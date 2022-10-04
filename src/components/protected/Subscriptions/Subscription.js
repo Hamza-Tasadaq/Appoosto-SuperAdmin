@@ -44,7 +44,6 @@ const Subscription = () => {
   }
   return (
     <div className="bg-[#ffffff] rounded-lg px-6 py-4">
-      Subscription
       <SubscriptionList
         subscriptionData={
           subscriptionData?.getSubscription?.responscedata.subscriptions
